@@ -3,6 +3,7 @@ package service;
 import dto.Book;
 import javafx.concurrent.Service;
 import repository.custom.impl.BookDaoImpl;
+import service.impl.BookServiceImpl;
 import util.ServiceType;
 
 import static util.ServiceType.BOOK;
@@ -21,7 +22,7 @@ public class ServiceFactory {
 
     public <T extends SuperService> T getServiceType(ServiceType type) {
         switch (type) {
-            case BOOK: return (T) new BookDaoImpl();
+            case BOOK: return (T) new BookServiceImpl();
         }
         return null;
     }

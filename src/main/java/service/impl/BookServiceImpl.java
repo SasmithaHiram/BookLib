@@ -1,14 +1,25 @@
 package service.impl;
 
 import dto.Book;
+import entity.BookEntity;
+import org.modelmapper.ModelMapper;
+import repository.DaoFactory;
+import repository.custom.BookDao;
 import service.custom.BookService;
+import util.DaoType;
 
 import java.util.List;
 
 public class BookServiceImpl implements BookService {
+    BookDao dao = DaoFactory.getInstance().getDaoType(DaoType.BOOK);
+
     @Override
     public boolean addBook(Book book) {
+        BookEntity map = new ModelMapper().map(book, BookEntity.class);
+        dao.save(map);
+
         return false;
+
     }
 
     @Override
@@ -30,5 +41,4 @@ public class BookServiceImpl implements BookService {
     public List<Book> getAll() {
         return List.of();
     }
-
 }

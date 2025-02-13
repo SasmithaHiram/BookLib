@@ -52,6 +52,12 @@
             <version>6.6.4.Final</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>3.2.2</version>
+        </dependency>
+
     </dependencies>
 
 </project>

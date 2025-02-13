@@ -57,12 +57,9 @@ public class BookFormController {
         String txtTitleText = txtTitle.getText();
         String txtAuthorText = txtAuthor.getText();
         String txtGenreText = txtGenre.getText();
-//      String txtStatusText = txtStatus.getText();
 
         Book book = new Book(txtIdText, txtISBNText, txtTitleText, txtAuthorText, txtGenreText);
         service.addBook(book);
-
-
 
     }
 
