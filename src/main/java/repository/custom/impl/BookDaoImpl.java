@@ -6,6 +6,7 @@ import repository.custom.BookDao;
 import java.util.List;
 
 public class BookDaoImpl implements BookDao{
+
     @Override
     public boolean save(BookEntity entity) {
         System.out.println(entity);
