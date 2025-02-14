@@ -1,12 +1,12 @@
-package controller.book;
+package controller;
 
+import com.google.inject.Inject;
 import dto.Book;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import service.ServiceFactory;
 import service.custom.BookService;
 import util.ServiceType;
 
@@ -48,7 +48,9 @@ public class BookFormController {
     @FXML
     private TextField txtId;
 
-    BookService service = ServiceFactory.getInstance().getServiceType(ServiceType.BOOK);
+    @Inject
+    BookService service;
+//  ServiceFactory.getInstance().getServiceType(ServiceType.BOOK);
 
     @FXML
     void btnAddBookOnAction(ActionEvent event) {
@@ -75,7 +77,6 @@ public class BookFormController {
 
     @FXML
     void btnSearchBookOnAction(ActionEvent event) {
-
     }
 
     @FXML

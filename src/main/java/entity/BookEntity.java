@@ -11,8 +11,8 @@ import lombok.ToString;
 @ToString
 
 public class BookEntity {
-    private Integer id;
-    private Integer iSBN;
+    private String id;
+    private String iSBN;
     private String title;
     private String author;
     private String genre;
