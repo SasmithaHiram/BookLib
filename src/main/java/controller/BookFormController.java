@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import dto.Book;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -60,13 +61,42 @@ public class BookFormController {
         String txtAuthorText = txtAuthor.getText();
         String txtGenreText = txtGenre.getText();
 
-        Book book = new Book(txtIdText, txtISBNText, txtTitleText, txtAuthorText, txtGenreText);
-        service.addBook(book);
+        if (txtIdText.isEmpty() || txtISBNText.isEmpty() || txtTitleText.isEmpty() || txtAuthorText.isEmpty() || txtGenreText.isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "ALL FIELD MUST BE FILLED OUT").show();
+        } else {
+            Book book = new Book(txtIdText, txtISBNText, txtTitleText, txtAuthorText, txtGenreText);
+            boolean isBookAdded = service.addBook(book);
+            if (isBookAdded) {
+                new Alert(Alert.AlertType.INFORMATION, "BOOK ADDED").show();
+                clearText();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "BOOK NOT ADDED").show();
+                clearText();
+            }
+        }
+
+    }
+
+    @FXML
+    void btnSearchBookOnAction(ActionEvent event) {
+        service.searchBook(txtId.getText());
+
+    }
+
+    @FXML
+    void btnUpdateBookOnAction(ActionEvent event) {
 
     }
 
     @FXML
     void btnDeleteBookOnAction(ActionEvent event) {
+        if (service.deleteBook(txtId.getText())) {
+            new Alert(Alert.AlertType.INFORMATION, "BOOK DELETED SUCCESSFULLY").show();
+            clearText();
+        } else {
+                new Alert(Alert.AlertType.ERROR, "FAILED TO DELETE BOOK. PLEASE TRY AGAIN").show();
+                clearText();
+            }
 
     }
 
@@ -75,12 +105,12 @@ public class BookFormController {
 
     }
 
-    @FXML
-    void btnSearchBookOnAction(ActionEvent event) {
-    }
-
-    @FXML
-    void btnUpdateBookOnAction(ActionEvent event) {
+    private void clearText() {
+        txtId.clear();
+        txtISBN.clear();
+        txtTitle.clear();
+        txtAuthor.clear();
+        txtGenre.clear();
 
     }
 
