@@ -4,11 +4,8 @@ import com.google.inject.Inject;
 import dto.Book;
 import entity.BookEntity;
 import org.modelmapper.ModelMapper;
-import repository.DaoFactory;
 import repository.custom.BookDao;
-import repository.custom.impl.BookDaoImpl;
 import service.custom.BookService;
-import util.DaoType;
 
 import java.util.List;
 
@@ -27,17 +24,22 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public boolean searchBook(String id) {
-        dao.search(id);
+    public Book searchBook(String id) {
+        BookEntity search = dao.search(id);
 
-        return false;
+        if (search!=null) {
+           return new ModelMapper().map(search, Book.class);
+        }
+
+        return null;
 
     }
 
     @Override
-    public boolean updateBook(Book book, String id) {
+    public boolean updateBook(Book book) {
+        BookEntity map = new ModelMapper().map(book, BookEntity.class);
+        return dao.update(map);
 
-        return false;
     }
 
     @Override

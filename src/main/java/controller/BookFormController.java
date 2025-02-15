@@ -2,6 +2,7 @@ package controller;
 
 import com.google.inject.Inject;
 import dto.Book;
+import entity.BookEntity;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -55,16 +56,10 @@ public class BookFormController {
 
     @FXML
     void btnAddBookOnAction(ActionEvent event) {
-        String txtIdText = txtId.getText();
-        String txtISBNText = txtISBN.getText();
-        String txtTitleText = txtTitle.getText();
-        String txtAuthorText = txtAuthor.getText();
-        String txtGenreText = txtGenre.getText();
-
-        if (txtIdText.isEmpty() || txtISBNText.isEmpty() || txtTitleText.isEmpty() || txtAuthorText.isEmpty() || txtGenreText.isEmpty()) {
+        if (txtId.getText().isEmpty() || txtISBN.getText().isEmpty() || txtTitle.getText().isEmpty() || txtAuthor.getText().isEmpty() || txtGenre.getText().isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "ALL FIELD MUST BE FILLED OUT").show();
         } else {
-            Book book = new Book(txtIdText, txtISBNText, txtTitleText, txtAuthorText, txtGenreText);
+            Book book = new Book(txtId.getText(), txtISBN.getText(), txtTitle.getText(), txtAuthor.getText(), txtGenre.getText());
             boolean isBookAdded = service.addBook(book);
             if (isBookAdded) {
                 new Alert(Alert.AlertType.INFORMATION, "BOOK ADDED").show();
@@ -79,12 +74,33 @@ public class BookFormController {
 
     @FXML
     void btnSearchBookOnAction(ActionEvent event) {
-        service.searchBook(txtId.getText());
+        Book book = service.searchBook(txtId.getText());
+
+        if (book!=null) {
+            txtISBN.setText(book.getISBN());
+            txtTitle.setText(book.getTitle());
+            txtAuthor.setText(book.getAuthor());
+            txtGenre.setText(book.getGenre());
+        } else {
+            new Alert(Alert.AlertType.ERROR, "BOOK NOT FOUND").show();
+
+        }
 
     }
 
     @FXML
     void btnUpdateBookOnAction(ActionEvent event) {
+        Book book = new Book(txtId.getText(), txtISBN.getText(), txtTitle.getText(), txtAuthor.getText(), txtGenre.getText());
+        boolean isBookUpdate = service.updateBook(book);
+
+        if (isBookUpdate) {
+            new Alert(Alert.AlertType.INFORMATION, "BOOK UPDATED SUCCESSFULLY").show();
+            clearText();
+        } else {
+            new Alert(Alert.AlertType.ERROR, "FAILED TO UPDATE BOOK").show();
+            clearText();
+
+        }
 
     }
 
@@ -102,7 +118,6 @@ public class BookFormController {
 
     @FXML
     void btnReloadBooksOnAction(ActionEvent event) {
-
     }
 
     private void clearText() {

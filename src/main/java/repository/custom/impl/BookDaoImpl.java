@@ -1,7 +1,6 @@
 package repository.custom.impl;
 
 import entity.BookEntity;
-import org.hibernate.annotations.processing.SQL;
 import repository.custom.BookDao;
 import repository.db.DBConnection;
 
@@ -35,17 +34,40 @@ public class BookDaoImpl implements BookDao {
             Connection connection = DBConnection.getInstance().getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(SQL);
-            resultSet.next();
+
+            if (resultSet.next()) {
+                return new BookEntity(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5)
+                );
+            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return null;
+
     }
 
     @Override
-    public boolean update(BookEntity entity, String s) {
-        return false;
+    public boolean update(BookEntity entity) {
+        String SQL = "UPDATE books SET ISBN =?, Title =?, Author =?, Genre =? WHERE Book_ID=?";
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setObject(1, entity.getISBN());
+            preparedStatement.setObject(2, entity.getTitle());
+            preparedStatement.setObject(3, entity.getAuthor());
+            preparedStatement.setObject(4, entity.getGenre());
+            preparedStatement.setObject(5, entity.getId());
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override

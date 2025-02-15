@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface BookService extends SuperService {
     boolean addBook(Book book);
-    boolean searchBook(String id);
-    boolean updateBook(Book book, String id);
+    Book searchBook(String id);
+    boolean updateBook(Book book);
     boolean deleteBook(String id);
     List<Book> getAll();
 
