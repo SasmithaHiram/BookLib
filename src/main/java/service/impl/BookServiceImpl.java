@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import repository.custom.BookDao;
 import service.custom.BookService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookServiceImpl implements BookService {
@@ -52,6 +53,15 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> getAll() {
-        return List.of();
+        List<BookEntity> all = dao.getAll();
+        ArrayList<Book> books = new ArrayList<>();
+
+        for (BookEntity entity : all) {
+            Book map = new ModelMapper().map(entity, Book.class);
+            books.add(map);
+        }
+
+        return books;
     }
+
 }

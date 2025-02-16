@@ -3,14 +3,16 @@ package controller;
 import com.google.inject.Inject;
 import dto.Book;
 import entity.BookEntity;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import service.custom.BookService;
-import util.ServiceType;
 
 public class BookFormController {
 
@@ -24,13 +26,13 @@ public class BookFormController {
     private TableColumn colId;
 
     @FXML
-    private TableColumn colStatus;
+    private TableColumn colAuthor;
 
     @FXML
     private TableColumn colTitle;
 
     @FXML
-    private TableView tbIBooks;
+    private TableView tableBooks;
 
     @FXML
     private TextField txtAuthor;
@@ -118,6 +120,7 @@ public class BookFormController {
 
     @FXML
     void btnReloadBooksOnAction(ActionEvent event) {
+        loadTable();
     }
 
     private void clearText() {
@@ -127,6 +130,22 @@ public class BookFormController {
         txtAuthor.clear();
         txtGenre.clear();
 
+    }
+
+    private void loadTable() {
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colISBN.setCellValueFactory(new PropertyValueFactory<>("iSBN"));
+        colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        colAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
+        colGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
+
+        ObservableList<Book> booksObservable = FXCollections.observableArrayList();
+
+        service.getAll().forEach(book -> {
+            booksObservable.add(book);
+        });
+
+        tableBooks.setItems(booksObservable);
     }
 
 }

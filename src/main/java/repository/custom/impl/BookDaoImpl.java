@@ -5,6 +5,7 @@ import repository.custom.BookDao;
 import repository.db.DBConnection;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookDaoImpl implements BookDao {
@@ -29,7 +30,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public BookEntity search(String s) {
-        String SQL = "SELECT *from books WHERE Book_ID='" + s + "'";
+        String SQL = "SELECT *from books WHERE book_id='" + s + "'";
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             Statement statement = connection.createStatement();
@@ -54,7 +55,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public boolean update(BookEntity entity) {
-        String SQL = "UPDATE books SET ISBN =?, Title =?, Author =?, Genre =? WHERE Book_ID=?";
+        String SQL = "UPDATE books SET isbn =?, title =?, author =?, genre =? WHERE book_id = ?";
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
@@ -72,7 +73,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public boolean delete(String s) {
-        String SQL = "DELETE from books WHERE Book_ID='" + s + "'";
+        String SQL = "DELETE from books WHERE book_id='" + s + "'";
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             return connection.createStatement().executeUpdate(SQL) > 0;
@@ -84,7 +85,28 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public List<BookEntity> getAll() {
-        return List.of();
+        ArrayList<BookEntity> bookEntities = new ArrayList<>();
+
+        String SQL = "SELECT *from books";
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SQL);
+
+            while (resultSet.next()) {
+                BookEntity bookEntity = new BookEntity(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5));
+                bookEntities.add(bookEntity);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return bookEntities;
     }
 
 }
