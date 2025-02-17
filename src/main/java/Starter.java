@@ -16,7 +16,7 @@ public class Starter extends Application {
     public void start(Stage stage) throws Exception {
         Injector injector = Guice.createInjector(new AppModule());
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/book- management-form.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(""));
         fxmlLoader.setControllerFactory(injector::getInstance);
 
         stage.setScene(new Scene(fxmlLoader.load()));
