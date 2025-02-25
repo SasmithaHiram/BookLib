@@ -21,26 +21,24 @@ public class BookServiceImpl implements BookService {
         boolean isSave = dao.save(map);
 
         return isSave;
-
     }
 
     @Override
     public Book searchBook(String id) {
         BookEntity search = dao.search(id);
 
-        if (search!=null) {
-           return new ModelMapper().map(search, Book.class);
+        if (search != null) {
+            return new ModelMapper().map(search, Book.class);
         }
 
         return null;
-
     }
 
     @Override
     public boolean updateBook(Book book) {
         BookEntity map = new ModelMapper().map(book, BookEntity.class);
-        return dao.update(map);
 
+        return dao.update(map);
     }
 
     @Override
@@ -48,7 +46,6 @@ public class BookServiceImpl implements BookService {
         boolean isDelete = dao.delete(id);
 
         return isDelete;
-
     }
 
     @Override

@@ -11,7 +11,6 @@ public class AppModule extends AbstractModule {
     protected void configure() {
         bind(BookService.class).to(BookServiceImpl.class);
         bind(BookDao.class).to(BookDaoImpl.class);
-
     }
 
 }

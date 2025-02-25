@@ -12,7 +12,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public boolean save(BookEntity entity) {
-        String SQL = "INSERT INTO books VALUES (?, ? ,?, ?, ?)";
+        String SQL = "INSERT INTO books VALUES (?, ? ,?, ?, ?, ?)";
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
@@ -21,11 +21,11 @@ public class BookDaoImpl implements BookDao {
             preparedStatement.setObject(3, entity.getTitle());
             preparedStatement.setObject(4, entity.getAuthor());
             preparedStatement.setObject(5, entity.getGenre());
+            preparedStatement.setObject(6, entity.getAvailability());
             return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     @Override
@@ -42,7 +42,8 @@ public class BookDaoImpl implements BookDao {
                         resultSet.getString(2),
                         resultSet.getString(3),
                         resultSet.getString(4),
-                        resultSet.getString(5)
+                        resultSet.getString(5),
+                        resultSet.getString(6)
                 );
             }
 
@@ -50,12 +51,11 @@ public class BookDaoImpl implements BookDao {
             throw new RuntimeException(e);
         }
         return null;
-
     }
 
     @Override
     public boolean update(BookEntity entity) {
-        String SQL = "UPDATE books SET isbn =?, title =?, author =?, genre =? WHERE book_id = ?";
+        String SQL = "UPDATE books SET isbn =?, title =?, author =?, genre =?, availability =? WHERE book_id = ?";
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
@@ -63,12 +63,12 @@ public class BookDaoImpl implements BookDao {
             preparedStatement.setObject(2, entity.getTitle());
             preparedStatement.setObject(3, entity.getAuthor());
             preparedStatement.setObject(4, entity.getGenre());
-            preparedStatement.setObject(5, entity.getId());
+            preparedStatement.setObject(5, entity.getAvailability());
+            preparedStatement.setObject(6, entity.getId());
             return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     @Override
@@ -80,7 +80,6 @@ public class BookDaoImpl implements BookDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     @Override
@@ -99,7 +98,8 @@ public class BookDaoImpl implements BookDao {
                         resultSet.getString(2),
                         resultSet.getString(3),
                         resultSet.getString(4),
-                        resultSet.getString(5));
+                        resultSet.getString(5),
+                        resultSet.getString(6));
                 bookEntities.add(bookEntity);
             }
 
