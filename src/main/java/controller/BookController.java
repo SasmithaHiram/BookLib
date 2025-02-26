@@ -2,10 +2,8 @@ package controller;
 
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextField;
 import dto.Book;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,13 +13,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import service.custom.BookService;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AddBookController implements Initializable {
+public class BookController implements Initializable {
     public JFXComboBox cmbAvailability;
     public TableView tableBooks;
     public TableColumn colId;

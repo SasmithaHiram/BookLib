@@ -30,7 +30,6 @@ public class BookServiceImpl implements BookService {
         if (search != null) {
             return new ModelMapper().map(search, Book.class);
         }
-
         return null;
     }
 

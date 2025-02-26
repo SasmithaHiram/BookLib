@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddBookController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BookController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#135b9e" height="66.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
       <Button layoutX="167.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnAddBookOnAction" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #28a745;" text="Add" textFill="WHITE">
