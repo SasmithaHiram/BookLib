@@ -26,6 +26,7 @@ public class BookController implements Initializable {
     public TableColumn colTitle;
     public TableColumn colAuthor;
     public TableColumn colGenre;
+    public TableColumn colAvailability;
     @Inject
     BookService service;
     @FXML
@@ -141,6 +142,7 @@ public class BookController implements Initializable {
         colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         colAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
         colGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        colAvailability.setCellValueFactory(new PropertyValueFactory<>("availability"));
 
         ObservableList<Book> booksObservable = FXCollections.observableArrayList();
 
