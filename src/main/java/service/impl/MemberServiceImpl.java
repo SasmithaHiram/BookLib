@@ -33,4 +33,10 @@ public class MemberServiceImpl implements MemberService {
         return dao.update(map);
     }
 
+    @Override
+    public boolean deleteMember(String text) {
+        boolean deleted = dao.delete(text);
+        return deleted;
+    }
+
 }

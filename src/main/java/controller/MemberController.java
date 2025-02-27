@@ -106,10 +106,15 @@ public class MemberController {
         }
     }
 
-
     @FXML
     void btnDeleteMemberOnAction(ActionEvent event) {
+        boolean deleteMember = service.deleteMember(txtId.getText());
 
+        if (deleteMember) {
+            new Alert(Alert.AlertType.INFORMATION, "MEMBER DELETED SUCCESSFULLY").show();
+        } else {
+            new Alert(Alert.AlertType.ERROR, "FAILED TO DELETE MEMBER. PLEASE TRY AGAIN").show();
+        }
     }
 
 }

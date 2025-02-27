@@ -66,7 +66,14 @@ public class MemberDaoImpl implements MemberDao {
 
     @Override
     public boolean delete(String s) {
-        return false;
+        String SQL = "DELETE from members WHERE member_id='" + s + "'";
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            Statement statement = connection.createStatement();
+            return statement.executeUpdate(SQL) > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
