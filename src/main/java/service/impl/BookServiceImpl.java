@@ -36,14 +36,12 @@ public class BookServiceImpl implements BookService {
     @Override
     public boolean updateBook(Book book) {
         BookEntity map = new ModelMapper().map(book, BookEntity.class);
-
         return dao.update(map);
     }
 
     @Override
     public boolean deleteBook(String id) {
         boolean isDelete = dao.delete(id);
-
         return isDelete;
     }
 

@@ -50,7 +50,18 @@ public class MemberDaoImpl implements MemberDao {
 
     @Override
     public boolean update(MemberEntity entity) {
-        return false;
+        String SQL = "UPDATE members SET name=?, contact_info=?, membership_date=? WHERE member_id=?";
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setObject(1, entity.getName());
+            preparedStatement.setObject(2, entity.getContactInfo());
+            preparedStatement.setObject(3, entity.getMembershipDate());
+            preparedStatement.setObject(4, entity.getId());
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

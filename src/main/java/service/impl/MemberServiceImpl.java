@@ -27,4 +27,10 @@ public class MemberServiceImpl implements MemberService {
         return null;
     }
 
+    @Override
+    public boolean updateBook(Member member) {
+        MemberEntity map = new ModelMapper().map(member, MemberEntity.class);
+        return dao.update(map);
+    }
+
 }

@@ -63,10 +63,18 @@ public class MemberController {
 
             if (addMember) {
                 new Alert(Alert.AlertType.INFORMATION, "MEMBER ADDED").show();
+                clearText();
             } else {
                 new Alert(Alert.AlertType.ERROR, "BOOK NOT ADDED").show();
             }
         }
+    }
+
+    private void clearText() {
+        txtId.clear();
+        txtName.clear();
+        txtContactInfo.clear();
+        membershipDate.cancelEdit();
     }
 
     @FXML
@@ -81,12 +89,26 @@ public class MemberController {
     }
 
     @FXML
-    void btnDeleteMemberOnAction(ActionEvent event) {
+    void btnUpdateMemberOnAction(ActionEvent event) {
+        String txtIdText = txtId.getText();
+        String txtNameText = txtName.getText();
+        String txtContactInfoText = txtContactInfo.getText();
+        String date = membershipDate.getValue().toString();
 
+        Member member = new Member(txtIdText, txtNameText, txtContactInfoText, date);
+        boolean updateBook = service.updateBook(member);
+
+        if (updateBook) {
+            new Alert(Alert.AlertType.INFORMATION, "BOOK UPDATED SUCCESSFULLY").show();
+            clearText();
+        } else {
+            new Alert(Alert.AlertType.ERROR,"FAILED TO UPDATE BOOK").show();
+        }
     }
 
+
     @FXML
-    void btnUpdateMemberOnAction(ActionEvent event) {
+    void btnDeleteMemberOnAction(ActionEvent event) {
 
     }
 

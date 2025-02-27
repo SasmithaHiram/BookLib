@@ -39,7 +39,7 @@ public class BookController implements Initializable {
     @FXML
     private TextField txtId;
 //  ServiceFactory.getInstance().getServiceType(ServiceType.BOOK);
-    
+
     @FXML
     void btnAddBookOnAction(ActionEvent event) {
         String txtIdText = txtId.getText();
@@ -63,14 +63,21 @@ public class BookController implements Initializable {
                 clearText();
             }
         }
+    }
 
+    private void clearText() {
+        txtId.clear();
+        txtISBN.clear();
+        txtTitle.clear();
+        txtAuthor.clear();
+        txtGenre.clear();
     }
 
     @FXML
     void btnSearchBookOnAction(ActionEvent event) {
         Book book = service.searchBook(txtId.getText());
 
-        if (book!=null) {
+        if (book != null) {
             txtISBN.setText(book.getISBN());
             txtTitle.setText(book.getTitle());
             txtAuthor.setText(book.getAuthor());
@@ -97,7 +104,6 @@ public class BookController implements Initializable {
         } else {
             new Alert(Alert.AlertType.ERROR, "FAILED TO UPDATE BOOK").show();
             clearText();
-
         }
     }
 
@@ -107,22 +113,14 @@ public class BookController implements Initializable {
             new Alert(Alert.AlertType.INFORMATION, "BOOK DELETED SUCCESSFULLY").show();
             clearText();
         } else {
-                new Alert(Alert.AlertType.ERROR, "FAILED TO DELETE BOOK. PLEASE TRY AGAIN").show();
-                clearText();
-            }
+            new Alert(Alert.AlertType.ERROR, "FAILED TO DELETE BOOK. PLEASE TRY AGAIN").show();
+            clearText();
+        }
     }
 
     @FXML
     void btnReloadBooksOnAction(ActionEvent event) {
         loadTable();
-    }
-
-    private void clearText() {
-        txtId.clear();
-        txtISBN.clear();
-        txtTitle.clear();
-        txtAuthor.clear();
-        txtGenre.clear();
     }
 
     public void loadCMB() {
@@ -137,20 +135,20 @@ public class BookController implements Initializable {
         loadCMB();
     }
 
-   private void loadTable() {
-       colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-       colISBN.setCellValueFactory(new PropertyValueFactory<>("iSBN"));
+    private void loadTable() {
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colISBN.setCellValueFactory(new PropertyValueFactory<>("iSBN"));
         colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
-       colAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
-      colGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        colAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
+        colGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
 
-      ObservableList<Book> booksObservable = FXCollections.observableArrayList();
+        ObservableList<Book> booksObservable = FXCollections.observableArrayList();
 
         service.getAll().forEach(book -> {
             booksObservable.add(book);
         });
 
-       tableBooks.setItems(booksObservable);
+        tableBooks.setItems(booksObservable);
     }
 
 }
