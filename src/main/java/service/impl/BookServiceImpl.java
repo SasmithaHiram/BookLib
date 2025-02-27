@@ -54,7 +54,6 @@ public class BookServiceImpl implements BookService {
             Book map = new ModelMapper().map(entity, Book.class);
             books.add(map);
         }
-
         return books;
     }
 

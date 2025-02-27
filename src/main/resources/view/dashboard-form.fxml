@@ -2,8 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -11,33 +9,13 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#135b9e" height="412.0" layoutX="-1.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="213.0" />
-      <JFXButton layoutX="20.0" layoutY="176.0" onAction="#btnBookManagementOnAction" style="-fx-background-color: White;" text="Manage Books">
+      <JFXButton layoutY="141.0" onAction="#btnBookManagementOnAction" style="-fx-background-color: White;" text="Book Management">
          <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </JFXButton>
-      <JFXButton layoutX="20.0" layoutY="235.0" onAction="#btnItemFormAction" prefHeight="44.0" prefWidth="171.0" style="-fx-background-color: White;" text="Item Form">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </JFXButton>
-      <JFXButton layoutX="20.0" layoutY="294.0" onAction="#btnOrderFormAction" prefHeight="44.0" prefWidth="171.0" style="-fx-background-color: White;" text="Order Form">
-         <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
       <AnchorPane fx:id="loadFormContent" layoutX="211.0" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Label layoutX="127.0" layoutY="61.0" text="Manage your customers, items and orders efficiently" textFill="#d97706">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="187.0" fitWidth="223.0" layoutX="207.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/Logo.png" />
-               </image>
-            </ImageView>
             <Label layoutX="215.0" layoutY="352.0" text="Developed by Sasmitha Hiram">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
@@ -48,7 +26,7 @@
                   <Font name="System Bold Italic" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="231.0" layoutY="10.0" text="Wholesale Store">
+            <Label layoutX="254.0" layoutY="14.0" text="BookLib">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -59,10 +37,20 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </JFXButton>
-      <Label layoutX="14.0" layoutY="14.0" text="Wholesale Store" textFill="WHITE">
+      <Label layoutX="56.0" layoutY="14.0" text="BookLib" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
+      <JFXButton layoutX="-1.0" layoutY="200.0" onAction="#btnMemberManagementOnAction" style="-fx-background-color: White;" text="Member Management">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutY="247.0" onAction="#btnMemberManagementOnAction" style="-fx-background-color: White;" text="Borrow Books">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

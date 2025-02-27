@@ -144,11 +144,7 @@ public class BookController implements Initializable {
         colAvailability.setCellValueFactory(new PropertyValueFactory<>("availability"));
 
         ObservableList<Book> booksObservable = FXCollections.observableArrayList();
-
-        service.getAll().forEach(book -> {
-            booksObservable.add(book);
-        });
-
+        
         tableBooks.setItems(booksObservable);
     }
 
