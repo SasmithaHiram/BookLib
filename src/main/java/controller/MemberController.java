@@ -3,20 +3,18 @@ package controller;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXTextField;
 import dto.Member;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import service.custom.MemberService;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
-
 public class MemberController {
-
     @FXML
     private TableColumn colContactNumber;
 
@@ -74,7 +72,7 @@ public class MemberController {
         txtId.clear();
         txtName.clear();
         txtContactInfo.clear();
-        membershipDate.cancelEdit();
+        membershipDate.setValue(null);
     }
 
     @FXML
@@ -115,6 +113,24 @@ public class MemberController {
         } else {
             new Alert(Alert.AlertType.ERROR, "FAILED TO DELETE MEMBER. PLEASE TRY AGAIN").show();
         }
+    }
+
+    private void loadTable() {
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colContactNumber.setCellValueFactory(new PropertyValueFactory<>("contactInfo"));
+        colMembershipDate.setCellValueFactory(new PropertyValueFactory<>("membershipDate"));
+
+        ObservableList<Member> memberObservableList = FXCollections.observableArrayList();
+
+        service.getAllMembers().forEach(member -> {
+            memberObservableList.add(member);
+        });
+        tableMember.setItems(memberObservableList);
+    }
+
+    public void btnReloadOnAction(ActionEvent actionEvent) {
+        loadTable();
     }
 
 }

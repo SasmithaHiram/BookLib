@@ -58,7 +58,6 @@ public class BookController implements Initializable {
             if (isBookAdded) {
                 new Alert(Alert.AlertType.INFORMATION, "BOOK ADDED").show();
                 clearText();
-                loadTable();
             } else {
                 new Alert(Alert.AlertType.ERROR, "BOOK NOT ADDED").show();
                 clearText();
@@ -153,4 +152,7 @@ public class BookController implements Initializable {
         tableBooks.setItems(booksObservable);
     }
 
+    public void btnReloadOnAction(ActionEvent actionEvent) {
+        loadTable();
+    }
 }

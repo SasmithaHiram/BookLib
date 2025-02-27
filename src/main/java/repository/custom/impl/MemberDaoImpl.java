@@ -1,11 +1,11 @@
 package repository.custom.impl;
 
-import entity.BookEntity;
 import entity.MemberEntity;
 import repository.custom.MemberDao;
 import repository.db.DBConnection;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MemberDaoImpl implements MemberDao {
@@ -19,7 +19,7 @@ public class MemberDaoImpl implements MemberDao {
             preparedStatement.setObject(2, entity.getName());
             preparedStatement.setObject(3, entity.getContactInfo());
             preparedStatement.setObject(4, entity.getMembershipDate());
-            return preparedStatement.executeUpdate() > 0 ;
+            return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -34,7 +34,7 @@ public class MemberDaoImpl implements MemberDao {
             ResultSet resultSet = statement.executeQuery(SQL);
 
             if (resultSet.next()) {
-                return new  MemberEntity(
+                return new MemberEntity(
                         resultSet.getString(1),
                         resultSet.getString(2),
                         resultSet.getString(3),
@@ -78,6 +78,25 @@ public class MemberDaoImpl implements MemberDao {
 
     @Override
     public List<MemberEntity> getAll() {
-        return List.of();
+        List<MemberEntity> memberEntities = new ArrayList<>();
+
+        String SQL = "SELECT *from members";
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            ResultSet resultSet = connection.createStatement().executeQuery(SQL);
+
+            while (resultSet.next()) {
+                MemberEntity memberEntity = new MemberEntity(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4));
+                        memberEntities.add(memberEntity);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return memberEntities;
     }
+
 }

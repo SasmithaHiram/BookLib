@@ -13,38 +13,42 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MemberController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#135b9e" height="66.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
-      <Button layoutX="167.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #28a745;" text="Add" textFill="WHITE">
+      <Button layoutX="167.0" layoutY="167.0" mnemonicParsing="false" onAction="#btnAddMemberOnAction" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #28a745;" text="Add" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <TableView fx:id="tableMember" layoutX="54.0" layoutY="206.0" prefHeight="145.0" prefWidth="493.0">
+      <TableView fx:id="tableMember" layoutX="54.0" layoutY="207.0" prefHeight="145.0" prefWidth="493.0">
         <columns>
           <TableColumn fx:id="colId" prefWidth="48.0" text="Id" />
-          <TableColumn fx:id="colName" prefWidth="152.0" text="Name" />
-            <TableColumn fx:id="colContactNumber" prefWidth="106.0" text="Contact Number" />
-            <TableColumn fx:id="colMembershipDate" prefWidth="169.0" text="Membership Date" />
+          <TableColumn fx:id="colName" prefWidth="131.0" text="Name" />
+            <TableColumn fx:id="colContactNumber" prefWidth="152.0" text="Contact Number" />
+            <TableColumn fx:id="colMembershipDate" prefWidth="160.0" text="Membership Date" />
         </columns>
       </TableView>
-      <Label layoutX="192.0" layoutY="9.0" text="Member Form" textFill="WHITE">
+      <Label layoutX="143.0" layoutY="9.0" text="Member Management" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Button layoutX="236.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnSearchMemberOnAction" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #007bff;" text="Search" textFill="WHITE">
+      <Button layoutX="236.0" layoutY="167.0" mnemonicParsing="false" onAction="#btnSearchMemberOnAction" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #007bff;" text="Search" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button layoutX="305.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnUpdateMemberOnAction" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #fd7e14;" text="Update" textFill="WHITE">
+      <Button layoutX="305.0" layoutY="167.0" mnemonicParsing="false" onAction="#btnUpdateMemberOnAction" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #fd7e14;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button layoutX="374.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnDeleteMemberOnAction" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #dc3545;" text="Delete" textFill="WHITE">
+      <Button layoutX="374.0" layoutY="167.0" mnemonicParsing="false" onAction="#btnDeleteMemberOnAction" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #dc3545;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <JFXTextField fx:id="txtId" layoutX="44.0" layoutY="82.0" promptText="Id" />
-      <JFXTextField fx:id="txtName" layoutX="366.0" layoutY="82.0" promptText="Name" />
-      <JFXTextField fx:id="txtContactInfo" layoutX="32.0" layoutY="126.0" promptText="Contact Number" />
-      <DatePicker fx:id="membershipDate" layoutX="346.0" layoutY="126.0" promptText="Membership Date" />
+      <Button layoutX="488.0" layoutY="361.0" mnemonicParsing="false" onAction="#btnReloadOnAction" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: #6c757d;" text="Reload" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <JFXTextField fx:id="txtId" layoutX="150.0" layoutY="83.0" promptText="Id" />
+      <JFXTextField fx:id="txtName" layoutX="315.0" layoutY="83.0" promptText="Name" />
+      <JFXTextField fx:id="txtContactInfo" layoutX="150.0" layoutY="123.0" promptText="Contact Number" />
+      <DatePicker fx:id="membershipDate" layoutX="315.0" layoutY="125.0" prefHeight="25.0" prefWidth="135.0" promptText="Membership Date" />
    </children>
 </AnchorPane>
