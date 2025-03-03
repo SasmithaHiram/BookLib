@@ -1,13 +1,11 @@
 package repository.custom.impl;
 
+import entity.MemberEntity;
 import entity.UserEntity;
 import repository.custom.UserDao;
 import repository.db.DBConnection;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +28,25 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public UserEntity search(String s) {
+        String SQL = "SELECT *from users WHERE email = '" + s + "'";
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            ResultSet resultSet = connection.createStatement().executeQuery(SQL);
+
+            if (resultSet.next()) {
+               return new UserEntity(
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4)
+                );
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return null;
     }
+
 
     @Override
     public boolean update(UserEntity entity) {
@@ -45,24 +60,7 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public List<UserEntity> getAll() {
-        String SQL = "SELECT *form users";
-
-        List<UserEntity> userEntities = new ArrayList<>();
-
-        try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            ResultSet resultSet = connection.createStatement().executeQuery(SQL);
-
-            while (resultSet.next()) {
-                UserEntity userEntity = new UserEntity(
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4));
-                userEntities.add(userEntity);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return userEntities;
+        return List.of();
     }
+
 }

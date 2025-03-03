@@ -21,6 +21,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User searchByEmail(String txtEmail) {
+        UserEntity search = dao.search(txtEmail);
+
+        if (search!=null) {
+            return new ModelMapper().map(search, User.class);
+        }
+        return null;
+    }
+
+    @Override
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
 
