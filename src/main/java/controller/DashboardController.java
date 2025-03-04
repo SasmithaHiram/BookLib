@@ -40,7 +40,7 @@ public class DashboardController {
     @FXML
     void btnborrowBooksOnAction(ActionEvent event) throws IOException {
         Injector injector = Guice.createInjector(new AppModule());
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/borrow.fxml"));
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/borrow-form.fxml"));
         loader.setControllerFactory(injector::getInstance);
         this.loadFormContent.getChildren().clear();
         this.loadFormContent.getChildren().add(loader.load());

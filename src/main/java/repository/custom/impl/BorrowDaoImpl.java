@@ -6,7 +6,9 @@ import repository.db.DBConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BorrowDaoImpl implements BorrowDao {
@@ -44,6 +46,26 @@ public class BorrowDaoImpl implements BorrowDao {
 
     @Override
     public List<BorrowEntity> getAll() {
-        return List.of();
+        List<BorrowEntity> borrows = new ArrayList<>();
+        String SQL = "SELECT *from borrow";
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            ResultSet resultSet = connection.createStatement().executeQuery(SQL);
+
+            while(resultSet.next()) {
+                BorrowEntity borrowEntity = new BorrowEntity(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5));
+                borrows.add(borrowEntity);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return borrows;
     }
+
 }
