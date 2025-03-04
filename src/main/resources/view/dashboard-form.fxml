@@ -47,7 +47,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutY="247.0" onAction="#btnMemberManagementOnAction" style="-fx-background-color: White;" text="Borrow Books">
+      <JFXButton layoutY="247.0" onAction="#btnborrowBooksOnAction" style="-fx-background-color: White;" text="Borrow Books">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

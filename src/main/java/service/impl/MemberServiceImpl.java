@@ -43,7 +43,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<Member> getAllMembers() {
+    public ArrayList<Member> getAllMembers() {
         List<MemberEntity> all = dao.getAll();
 
         ArrayList<Member> members = new ArrayList<>();
@@ -52,7 +52,7 @@ public class MemberServiceImpl implements MemberService {
             Member map = new ModelMapper().map(memberEntity, Member.class);
             members.add(map);
         });
-        return members;
+       return members;
     }
 
 }

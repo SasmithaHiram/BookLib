@@ -1,4 +1,4 @@
-package dto;
+package entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @ToString
 
-public class Borrow {
+public class BorrowEntity {
     private String borrowId;
     private String memberId;
     private String bookId;
