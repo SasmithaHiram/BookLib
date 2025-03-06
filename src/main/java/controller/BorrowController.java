@@ -111,15 +111,17 @@ public class BorrowController implements Initializable {
                     cartTM.getBorrowDate(),
                     cartTM.getReturnDate()
             );
-            borrowService.placeBorrowOrder(borrow);
-        });
+            boolean placeBorrowOrder = borrowService.placeBorrowOrder(borrow);
 
-//        if(placeBorrowOrder) {
-//            new Alert(Alert.AlertType.INFORMATION, "ORDER ADDED").show();
-//            clear();
-//        } else {
-//            new Alert(Alert.AlertType.ERROR, "ORDER NOT ADDED").show();
-//        }
+            if(placeBorrowOrder) {
+                new Alert(Alert.AlertType.INFORMATION, "ORDER ADDED").show();
+                clear();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "ORDER NOT ADDED").show();
+            }
+
+
+        });
 
     }
 
