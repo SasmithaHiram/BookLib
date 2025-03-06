@@ -32,15 +32,11 @@ public class LoginController {
 
     @FXML
     void btnLoginAction(ActionEvent event) throws IOException {
-        String key = "#5541Asd";
-        BasicTextEncryptor basicTextEncryptor = new BasicTextEncryptor();
-        basicTextEncryptor.setPassword(key);
-
         User user = service.searchByEmail(txtEmail.getText());
 
         if (txtEmail.getText().isEmpty() || txtPassword.getText().isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "ALL FIELD MUST BE FILLED OUT").show();
-        } else if (txtEmail.getText().equals(user.getEmail()) && txtPassword.getText().equals(basicTextEncryptor.decrypt(user.getPassword()))) {
+        } else if (txtEmail.getText().equals(user.getEmail()) && txtPassword.getText().equals(user.getPassword())) {
             Stage stage = new Stage();
             Injector injector = Guice.createInjector(new AppModule());
 

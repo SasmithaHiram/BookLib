@@ -29,15 +29,11 @@ public class RegisterFormController {
 
     @FXML
     void btnRegisterCustomer(ActionEvent event) {
-        String key = "#5541Asd";
-        BasicTextEncryptor basicTextEncryptor = new BasicTextEncryptor();
-        basicTextEncryptor.setPassword(key);
-
         if (txtEmail.getText().isEmpty() || txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty() || txtConfirmPassword.getText().isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "ALL FIELD MUST BE FILLED OUT").show();
 
         } else if (txtPassword.getText().equals(txtConfirmPassword.getText())) {
-            User user = new User(txtUsername.getText(), txtEmail.getText(), basicTextEncryptor.encrypt(txtPassword.getText()));
+            User user = new User(txtUsername.getText(), txtEmail.getText(), txtPassword.getText());
             boolean saved = service.saveUser(user);
 
             if (saved) {
