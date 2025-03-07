@@ -52,15 +52,15 @@ public class BorrowDaoImpl implements BorrowDao {
             Connection connection = DBConnection.getInstance().getConnection();
             ResultSet resultSet = connection.createStatement().executeQuery(SQL);
 
-            while(resultSet.next()) {
-                BorrowEntity borrowEntity = new BorrowEntity(
-                        resultSet.getString(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4),
-                        resultSet.getString(5));
-                borrows.add(borrowEntity);
-            }
+//            while(resultSet.next()) {
+//                BorrowEntity borrowEntity = new BorrowEntity(
+//                        resultSet.getString(1),
+//                        resultSet.getString(2),
+//                        resultSet.getString(3),
+//                        resultSet.getString(4),
+//                        resultSet.getString(5));
+//                borrows.add(borrowEntity);
+//            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

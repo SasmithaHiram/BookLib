@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import util.BorrowStatus;
 
 import java.util.Date;
 
@@ -17,6 +18,8 @@ public class Borrow {
     private String memberId;
     private String bookId;
     private String borrowDate;
+    private String dewDate;
     private String returnDate;
+    private BorrowStatus status;
 
 }

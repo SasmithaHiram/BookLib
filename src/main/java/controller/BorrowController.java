@@ -17,12 +17,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import service.custom.BookService;
 import service.custom.BorrowService;
 import service.custom.MemberService;
+import util.BorrowStatus;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.UUID;
 
 import static org.hibernate.internal.util.StringHelper.count;
 
@@ -55,7 +54,7 @@ public class BorrowController implements Initializable {
     private JFXComboBox cmbMembersId;
 
     @FXML
-    private DatePicker returnDate;
+    private DatePicker dewDate;
 
     public ObservableList<String> setMembersId() {
         ObservableList<String> membersId = FXCollections.observableArrayList();
@@ -93,35 +92,29 @@ public class BorrowController implements Initializable {
         String memberId = cmbMembersId.getValue().toString();
         String bookId = cmbBooksId.getValue().toString();
         String borrowDay = borrowDate.getValue().toString();
-        String returnDay  = returnDate.getValue().toString();
+        String dewDay = dewDate.getValue().toString();
 
-        cartTMS.add(new CartTM(borrowIdText, memberId, bookId, borrowDay, returnDay));
+        cartTMS.add(new CartTM(borrowIdText, memberId, bookId, borrowDay, dewDay));
         tbCart.setItems(cartTMS);
+
     }
 
     @FXML
     void btnConfirmBorrowingOnAction(ActionEvent event) {
         String orderIdText = orderId.getText();
 
-        cartTMS.forEach(cartTM -> {
-            Borrow borrow = new Borrow(
-                    orderIdText,
-                    cartTM.getMemberId(),
-                    cartTM.getBookId(),
-                    cartTM.getBorrowDate(),
-                    cartTM.getReturnDate()
-            );
-            boolean placeBorrowOrder = borrowService.placeBorrowOrder(borrow);
 
-            if(placeBorrowOrder) {
-                new Alert(Alert.AlertType.INFORMATION, "ORDER ADDED").show();
-                clear();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "ORDER NOT ADDED").show();
-            }
-
-
-        });
+//            boolean placeBorrowOrder = borrowService.placeBorrowOrder();
+//
+//            if(placeBorrowOrder) {
+//                new Alert(Alert.AlertType.INFORMATION, "ORDER ADDED").show();
+//                clear();
+//            } else {
+//                new Alert(Alert.AlertType.ERROR, "ORDER NOT ADDED").show();
+//            }
+//
+//
+//        });
 
     }
 
@@ -133,7 +126,7 @@ public class BorrowController implements Initializable {
         colMemberId.setCellValueFactory(new PropertyValueFactory<>("memberId"));
         colBookId.setCellValueFactory(new PropertyValueFactory<>("bookId"));
         colBorrowDate.setCellValueFactory(new PropertyValueFactory<>("borrowDate"));
-        colReturnDate.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
+        colReturnDate.setCellValueFactory(new PropertyValueFactory<>("dewDate"));
 
         loadMembersId();
         loadBooksId();
@@ -144,7 +137,7 @@ public class BorrowController implements Initializable {
         cmbMembersId.setValue(null);
         cmbBooksId.setValue(null);
         borrowDate.setValue(null);
-        returnDate.setValue(null);
+        dewDate.setValue(null);
     }
 
 }

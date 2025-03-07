@@ -39,6 +39,6 @@
       </Label>
       <JFXTextField fx:id="orderId" layoutX="452.0" layoutY="19.0" promptText="Order Id" style="-fx-background-color: white;" unFocusColor="WHITE" />
       <DatePicker fx:id="borrowDate" layoutX="55.0" layoutY="166.0" promptText="Borrow Date" />
-      <DatePicker fx:id="returnDate" layoutX="238.0" layoutY="166.0" promptText="Return Date" />
+      <DatePicker fx:id="dewDate" layoutX="238.0" layoutY="166.0" promptText="Return Date" />
    </children>
 </AnchorPane>
