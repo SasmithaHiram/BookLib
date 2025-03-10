@@ -19,7 +19,6 @@ public class Borrow {
     private String bookId;
     private String borrowDate;
     private String dewDate;
-    private String returnDate;
     private BorrowStatus status;
 
 }

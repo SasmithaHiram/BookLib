@@ -14,7 +14,6 @@ import java.util.Date;
 @ToString
 
 public class CartTM {
-    private String borrowId;
     private String memberId;
     private String bookId;
     private String borrowDate;

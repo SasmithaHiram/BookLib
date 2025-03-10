@@ -3,10 +3,7 @@ package controller;
 import com.google.inject.Inject;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import dto.Book;
-import dto.Borrow;
-import dto.CartTM;
-import dto.Member;
+import dto.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +17,7 @@ import service.custom.MemberService;
 import util.BorrowStatus;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -88,21 +86,39 @@ public class BorrowController implements Initializable {
 
     @FXML
     void bntAddToListOnAction(ActionEvent event) {
-        String borrowIdText = orderId.getText();
         String memberId = cmbMembersId.getValue().toString();
         String bookId = cmbBooksId.getValue().toString();
         String borrowDay = borrowDate.getValue().toString();
         String dewDay = dewDate.getValue().toString();
 
-        cartTMS.add(new CartTM(borrowIdText, memberId, bookId, borrowDay, dewDay));
+        cartTMS.add(new CartTM(memberId, bookId, borrowDay, dewDay));
         tbCart.setItems(cartTMS);
+    }
+
+    public void placeBorrow() {
+        String orderIdText = orderId.getText();
+        String memberId = cmbMembersId.getValue().toString();
+        String bookId = cmbBooksId.getValue().toString();
+        String borrowDay = borrowDate.getValue().toString();
+        String dewDay = dewDate.getValue().toString();
+
+        List<BorrowDetail> borrowDetails = new ArrayList<>();
+
+            cartTMS.forEach(cartTM -> {
+                borrowDetails.add(
+                        new BorrowDetail(orderIdText, cartTM.getMemberId(), cartTM.getBookId())
+                );
+            });
+
+
+        Borrow borrow = new Borrow(borrowDetails, borrowDay, dewDay, BorrowStatus.BORROWED);
+borrowService.placeBorrowOrder(borrow);
 
     }
 
     @FXML
     void btnConfirmBorrowingOnAction(ActionEvent event) {
-        String orderIdText = orderId.getText();
-
+       placeBorrow();
 
 //            boolean placeBorrowOrder = borrowService.placeBorrowOrder();
 //
@@ -120,9 +136,10 @@ public class BorrowController implements Initializable {
 
 
 
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        colBorrowId.setCellValueFactory(new PropertyValueFactory<>("borrowId"));
         colMemberId.setCellValueFactory(new PropertyValueFactory<>("memberId"));
         colBookId.setCellValueFactory(new PropertyValueFactory<>("bookId"));
         colBorrowDate.setCellValueFactory(new PropertyValueFactory<>("borrowDate"));

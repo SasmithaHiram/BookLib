@@ -14,7 +14,7 @@ import java.util.List;
 public class BorrowDaoImpl implements BorrowDao {
     @Override
     public boolean save(BorrowEntity entity) {
-        String SQL = "INSERT INTO borrow VALUES (?, ?, ?, ?, ?)";
+        String SQL = "INSERT INTO borrow VALUES (?, ?, ?, ?, ?, ?)";
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
@@ -22,8 +22,11 @@ public class BorrowDaoImpl implements BorrowDao {
             preparedStatement.setObject(2, entity.getMemberId());
             preparedStatement.setObject(3, entity.getBookId());
             preparedStatement.setObject(4, entity.getBorrowDate());
-            preparedStatement.setObject(5, entity.getReturnDate());
+            preparedStatement.setObject(5, entity.getDewDate());
+            preparedStatement.setObject(6, entity.getStatus().name());
             return preparedStatement.executeUpdate() > 0;
+
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -46,26 +49,7 @@ public class BorrowDaoImpl implements BorrowDao {
 
     @Override
     public List<BorrowEntity> getAll() {
-        List<BorrowEntity> borrows = new ArrayList<>();
-        String SQL = "SELECT *from borrow";
-        try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            ResultSet resultSet = connection.createStatement().executeQuery(SQL);
-
-//            while(resultSet.next()) {
-//                BorrowEntity borrowEntity = new BorrowEntity(
-//                        resultSet.getString(1),
-//                        resultSet.getString(2),
-//                        resultSet.getString(3),
-//                        resultSet.getString(4),
-//                        resultSet.getString(5));
-//                borrows.add(borrowEntity);
-//            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return borrows;
+        return null;
     }
 
 }
