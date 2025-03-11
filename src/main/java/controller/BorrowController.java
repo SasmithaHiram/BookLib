@@ -91,8 +91,13 @@ public class BorrowController implements Initializable {
         String borrowDay = borrowDate.getValue().toString();
         String dewDay = dewDate.getValue().toString();
 
-        cartTMS.add(new CartTM(memberId, bookId, borrowDay, dewDay));
-        tbCart.setItems(cartTMS);
+       if (cartTMS.size()<3) {
+           cartTMS.add(new CartTM(bookId, borrowDay, dewDay));
+           tbCart.setItems(cartTMS);
+            addToCart();
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Cant").show();
+        }
     }
 
     public void placeBorrow() {
@@ -104,15 +109,6 @@ public class BorrowController implements Initializable {
 
         List<BorrowDetail> borrowDetails = new ArrayList<>();
 
-            cartTMS.forEach(cartTM -> {
-                borrowDetails.add(
-                        new BorrowDetail(orderIdText, cartTM.getMemberId(), cartTM.getBookId())
-                );
-            });
-
-
-        Borrow borrow = new Borrow(borrowDetails, borrowDay, dewDay, BorrowStatus.BORROWED);
-borrowService.placeBorrowOrder(borrow);
 
     }
 
@@ -134,17 +130,19 @@ borrowService.placeBorrowOrder(borrow);
 
     }
 
+    public void addToCart() {
+        colBookId.setCellValueFactory(new PropertyValueFactory<>("bookId"));
+        colBorrowDate.setCellValueFactory(new PropertyValueFactory<>("borrowDate"));
+        colReturnDate.setCellValueFactory(new PropertyValueFactory<>("dewDate"));
+
+    }
+
 
 
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        colMemberId.setCellValueFactory(new PropertyValueFactory<>("memberId"));
-        colBookId.setCellValueFactory(new PropertyValueFactory<>("bookId"));
-        colBorrowDate.setCellValueFactory(new PropertyValueFactory<>("borrowDate"));
-        colReturnDate.setCellValueFactory(new PropertyValueFactory<>("dewDate"));
-
         loadMembersId();
         loadBooksId();
     }
