@@ -10,9 +10,10 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 
-public class BorrowDetail {
+public class BorrowDetails {
     private String borrowId;
-    private String memberId;
     private String bookId;
+    private String borrowDate;
+    private String returnDate;
 
 }

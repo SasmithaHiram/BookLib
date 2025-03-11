@@ -86,6 +86,7 @@ public class BorrowController implements Initializable {
 
     @FXML
     void bntAddToListOnAction(ActionEvent event) {
+        String orderIdText = orderId.getText();
         String memberId = cmbMembersId.getValue().toString();
         String bookId = cmbBooksId.getValue().toString();
         String borrowDay = borrowDate.getValue().toString();
@@ -96,8 +97,9 @@ public class BorrowController implements Initializable {
            tbCart.setItems(cartTMS);
             addToCart();
         }else {
-            new Alert(Alert.AlertType.ERROR, "Cant").show();
+           new Alert(Alert.AlertType.WARNING, "BORROW LIMIT EXCEEDED").show();
         }
+
     }
 
     public void placeBorrow() {
@@ -107,14 +109,34 @@ public class BorrowController implements Initializable {
         String borrowDay = borrowDate.getValue().toString();
         String dewDay = dewDate.getValue().toString();
 
-        List<BorrowDetail> borrowDetails = new ArrayList<>();
+        List<BorrowDetails> borrowDetails = new ArrayList<>();
 
+        cartTMS.forEach(cartTM -> {
+            borrowDetails.add(
+                    new BorrowDetails(
+                            orderIdText,
+                            cartTM.getBookId(),
+                            cartTM.getBorrowDate(),
+                            null
+                    )
+            );
+        });
+
+        Borrow borrow = new Borrow(orderIdText, memberId, bookId, borrowDay, dewDay, BorrowStatus.BORROWED, borrowDetails);
+
+
+        boolean placeBorrowOrder = borrowService.placeBorrowOrder(borrow);
+
+
+        if (placeBorrowOrder) {
+            new Alert(Alert.AlertType.INFORMATION, "Order Ok").show();
+        }
 
     }
 
     @FXML
     void btnConfirmBorrowingOnAction(ActionEvent event) {
-       placeBorrow();
+        placeBorrow();
 
 //            boolean placeBorrowOrder = borrowService.placeBorrowOrder();
 //

@@ -1,9 +1,7 @@
 package service.custom;
 
-import dto.BorrowDetail;
-
-import java.util.List;
+import dto.BorrowDetails;
 
 public interface OrderDetail {
-    boolean addDetaill(BorrowDetail borrowDetail);
+    boolean addDetaill(BorrowDetails borrowDetail);
 }

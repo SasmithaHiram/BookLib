@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import util.BorrowStatus;
 
-import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -20,5 +20,6 @@ public class Borrow {
     private String borrowDate;
     private String dewDate;
     private BorrowStatus status;
+    private List<BorrowDetails> borrowedBooks;
 
 }

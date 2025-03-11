@@ -1,5 +1,6 @@
 package entity;
 
+import dto.BorrowDetails;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,8 @@ import lombok.ToString;
 
 public class BorrowDetailEntity {
     private String borrowId;
-    private String memberId;
     private String bookId;
+    private String borrowDate;
+    private String returnDate;
 
 }
