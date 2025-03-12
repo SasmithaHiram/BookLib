@@ -125,8 +125,8 @@ public class BookController implements Initializable {
 
     public void loadCMB() {
         ObservableList<String> observableList = FXCollections.observableArrayList();
-        observableList.add("Availabile");
-        observableList.add("Not Availability");
+        observableList.add("Available");
+        observableList.add("Not Available");
         cmbAvailability.setItems(observableList);
     }
 

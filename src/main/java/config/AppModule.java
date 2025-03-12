@@ -19,7 +19,7 @@ public class AppModule extends AbstractModule {
         bind(UserDao.class).to(UserDaoImp.class);
         bind(BorrowService.class).to(BorrowServiceImpl.class);
         bind(BorrowDao.class).to(BorrowDaoImpl.class);
-        bind(BorrowDetailService.class).to(BorrowDetailImpl.class);
+        bind(BorrowDetailService.class).to(BorrowDetailServiceImpl.class);
         bind(BorrowDetailDao.class).to(BorrowDetailDaoImpl.class);
     }
 

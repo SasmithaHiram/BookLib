@@ -2,17 +2,20 @@ package service.impl;
 
 import com.google.inject.Inject;
 import dto.Book;
+import dto.BorrowDetails;
 import entity.BookEntity;
+import entity.BorrowDetailEntity;
 import org.modelmapper.ModelMapper;
 import repository.custom.BookDao;
+import repository.custom.impl.BookDaoImpl;
 import service.custom.BookService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BookServiceImpl implements BookService {
-    @Inject
-    BookDao dao;
+//    @Inject
+    BookDao dao = new BookDaoImpl();
 //  DaoFactory.getInstance().getDaoType(DaoType.BOOK);
 
     @Override
@@ -55,6 +58,25 @@ public class BookServiceImpl implements BookService {
             books.add(map);
         }
         return books;
+    }
+
+    public boolean updateAvailability(List<BorrowDetails> borrowDetails) {
+        List<BorrowDetailEntity> borrowDetailEntities = new ArrayList<>();
+
+        for (BorrowDetails borrowDetail : borrowDetails) {
+            BorrowDetailEntity entity = new ModelMapper().map(borrowDetail, BorrowDetailEntity.class);
+            borrowDetailEntities.add(entity);
+            boolean updateAvailability = updateAvailability(entity);
+
+            if (!updateAvailability) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean updateAvailability(BorrowDetailEntity borrowDetail) {
+        return dao.updateAvailability(borrowDetail);
     }
 
 }

@@ -8,7 +8,7 @@ import repository.custom.BorrowDetailDao;
 import repository.custom.impl.BorrowDetailDaoImpl;
 import service.custom.BorrowDetailService;
 
-public class BorrowDetailImpl implements BorrowDetailService {
+public class BorrowDetailServiceImpl implements BorrowDetailService {
     //@Inject
     BorrowDetailDao borrowDetailDao = new BorrowDetailDaoImpl();
 
@@ -16,6 +16,8 @@ public class BorrowDetailImpl implements BorrowDetailService {
     public boolean addBorrowDetail(BorrowDetails borrowDetails) {
         BorrowDetailEntity map = new ModelMapper().map(borrowDetails, BorrowDetailEntity.class);
         return borrowDetailDao.save(map);
+
+
     }
 
 }

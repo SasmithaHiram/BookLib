@@ -1,9 +1,11 @@
 package controller;
 
 import com.google.inject.Inject;
+import com.google.protobuf.Value;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import dto.*;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +16,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import service.custom.BookService;
 import service.custom.BorrowService;
 import service.custom.MemberService;
+import service.impl.BookServiceImpl;
+import service.impl.BorrowServiceImpl;
+import service.impl.MemberServiceImpl;
+import util.BookStatus;
 import util.BorrowStatus;
 
 import java.net.URL;
@@ -30,15 +36,18 @@ public class BorrowController implements Initializable {
     public TableColumn colBookId;
     public TableColumn colBorrowDate;
     public TableColumn colReturnDate;
+    public JFXTextField txtMemberName;
+    public JFXTextField txtBookName;
+    public JFXTextField txtStatus;
 
-    @Inject
-    MemberService service;
+    //@Inject
+    MemberService service = new MemberServiceImpl();
 
-    @Inject
-    BookService bookService;
+    //@Inject
+    BookService bookService = new BookServiceImpl();
 
-    @Inject
-    BorrowService borrowService;
+    //@Inject
+    BorrowService borrowService = new BorrowServiceImpl();
 
     public JFXTextField orderId;
 
@@ -54,58 +63,53 @@ public class BorrowController implements Initializable {
     @FXML
     private DatePicker dewDate;
 
-    public ObservableList<String> setMembersId() {
-        ObservableList<String> membersId = FXCollections.observableArrayList();
-        List<Member> list = service.getAllMembers();
+    public void setMemberDetails() {
+        ObservableList<String> memberObservableList = FXCollections.observableArrayList();
 
-        list.forEach(id -> {
-            membersId.add(id.getId());
+        service.getAllMembers().forEach(members -> {
+            memberObservableList.add(members.getId());
         });
-        return membersId;
+        cmbMembersId.setItems(memberObservableList);
     }
 
-    public ObservableList<String> setBooksId() {
-        ObservableList<String> booksId = FXCollections.observableArrayList();
-        List<Book> all = bookService.getAll();
+    public void setBookDetails() {
+        ObservableList<String> bookObservableList = FXCollections.observableArrayList();
 
-        all.forEach(bookId -> {
-            booksId.add(bookId.getId());
+        bookService.getAll().forEach(books -> {
+            bookObservableList.add(books.getId());
         });
-        return booksId;
-    }
 
-    public void loadMembersId() {
-        cmbMembersId.setItems(setMembersId());
-    }
+        cmbBooksId.setItems(bookObservableList);
 
-    public void loadBooksId() {
-        cmbBooksId.setItems(setBooksId());
     }
-
     ObservableList<CartTM> cartTMS = FXCollections.observableArrayList();
 
     @FXML
     void bntAddToListOnAction(ActionEvent event) {
-        String orderIdText = orderId.getText();
-        String memberId = cmbMembersId.getValue().toString();
         String bookId = cmbBooksId.getValue().toString();
         String borrowDay = borrowDate.getValue().toString();
         String dewDay = dewDate.getValue().toString();
 
-       if (cartTMS.size()<3) {
-           cartTMS.add(new CartTM(bookId, borrowDay, dewDay));
-           tbCart.setItems(cartTMS);
-            addToCart();
-        }else {
-           new Alert(Alert.AlertType.WARNING, "BORROW LIMIT EXCEEDED").show();
+        if (txtStatus.getText().toUpperCase().equals(BookStatus.AVAILABLE.toString())) {
+            if (cartTMS.size() < 3) {
+                cartTMS.add(new CartTM(bookId, borrowDay, dewDay));
+                tbCart.setItems(cartTMS);
+                addToCart();
+            } else {
+                new Alert(Alert.AlertType.WARNING, "BORROW LIMIT EXCEEDED").show();
+            }
+        } else {
+            new Alert(Alert.AlertType.WARNING, "THIS BOOK IS CURRENTLY NOT AVAILABLE").show();
         }
+
+
+
 
     }
 
-    public void placeBorrow() {
+    public boolean placeBorrow() {
         String orderIdText = orderId.getText();
         String memberId = cmbMembersId.getValue().toString();
-        String bookId = cmbBooksId.getValue().toString();
         String borrowDay = borrowDate.getValue().toString();
         String dewDay = dewDate.getValue().toString();
 
@@ -122,16 +126,30 @@ public class BorrowController implements Initializable {
             );
         });
 
-        Borrow borrow = new Borrow(orderIdText, memberId, bookId, borrowDay, dewDay, BorrowStatus.BORROWED, borrowDetails);
-
+        Borrow borrow = new Borrow(orderIdText, memberId, borrowDay, dewDay, BorrowStatus.BORROWED, borrowDetails);
 
         boolean placeBorrowOrder = borrowService.placeBorrowOrder(borrow);
 
-
         if (placeBorrowOrder) {
-            new Alert(Alert.AlertType.INFORMATION, "Order Ok").show();
+            boolean isAddBorrowDetail = new BorrowDetailController().addBorrowDetail(borrow.getBorrowedBooks());
+
+            new Alert(Alert.AlertType.INFORMATION, "BOOK ISSUED SUCCESSFULLY", ButtonType.OK).show();
+
+            if (isAddBorrowDetail) {
+                boolean updateAvailability = new BookServiceImpl().updateAvailability(borrow.getBorrowedBooks());
+                if (updateAvailability) {
+                    return true;
+                }
+            }
         }
 
+//        if (placeBorrowOrder) {
+//
+//        } else {
+//            new Alert(Alert.AlertType.INFORMATION, "UNABLE TO COMPLETE YOUR REQUEST. PLEASE TRY AGAIN", ButtonType.OK).show();
+//        }
+
+        return placeBorrowOrder;
     }
 
     @FXML
@@ -159,15 +177,35 @@ public class BorrowController implements Initializable {
 
     }
 
-
-
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loadMembersId();
-        loadBooksId();
+        setMemberDetails();
+        setBookDetails();
+
+        cmbMembersId.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                searchMemberDetails(newValue.toString());
+            }
+        });
+
+        cmbBooksId.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                searchBookDetails(newValue.toString());
+            }
+        });
     }
+
+    private void searchMemberDetails(String string) {
+        Member member = service.searchMember(string);
+        txtMemberName.setText(member.getName());
+    }
+
+    private void searchBookDetails(String string) {
+        Book book = bookService.searchBook(string);
+        txtBookName.setText(book.getTitle());
+        txtStatus.setText(book.getAvailability());
+    }
+
 
     public void clear() {
         orderId.clear();

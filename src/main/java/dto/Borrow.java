@@ -16,7 +16,6 @@ import java.util.List;
 public class Borrow {
     private String borrowId;
     private String memberId;
-    private String bookId;
     private String borrowDate;
     private String dewDate;
     private BorrowStatus status;

@@ -5,6 +5,7 @@ import entity.MemberEntity;
 import jakarta.inject.Inject;
 import org.modelmapper.ModelMapper;
 import repository.custom.MemberDao;
+import repository.custom.impl.MemberDaoImpl;
 import service.custom.MemberService;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class MemberServiceImpl implements MemberService {
     @Inject
-    MemberDao dao;
+    MemberDao dao = new MemberDaoImpl();
 
     @Override
     public boolean addMember(Member member) {
