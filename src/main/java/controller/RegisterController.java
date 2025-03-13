@@ -7,10 +7,9 @@ import dto.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import org.jasypt.util.text.BasicTextEncryptor;
 import service.custom.UserService;
 
-public class RegisterFormController {
+public class RegisterController {
     @Inject
     UserService service;
 

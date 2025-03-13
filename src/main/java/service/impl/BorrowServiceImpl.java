@@ -5,14 +5,15 @@ import dto.Borrow;
 import entity.BorrowEntity;
 import org.modelmapper.ModelMapper;
 import repository.custom.BorrowDao;
+import repository.custom.impl.BorrowDaoImpl;
 import service.custom.BorrowService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BorrowServiceImpl implements BorrowService {
-    @Inject
-    BorrowDao borrowDao;
+    //@Inject
+    BorrowDao borrowDao = new BorrowDaoImpl();
 
     @Override
     public boolean placeBorrowOrder(Borrow borrow) {

@@ -82,6 +82,7 @@ public class BorrowController implements Initializable {
         cmbBooksId.setItems(bookObservableList);
 
     }
+
     ObservableList<CartTM> cartTMS = FXCollections.observableArrayList();
 
     @FXML
@@ -101,8 +102,6 @@ public class BorrowController implements Initializable {
         } else {
             new Alert(Alert.AlertType.WARNING, "THIS BOOK IS CURRENTLY NOT AVAILABLE").show();
         }
-
-
 
 
     }
@@ -133,40 +132,28 @@ public class BorrowController implements Initializable {
         if (placeBorrowOrder) {
             boolean isAddBorrowDetail = new BorrowDetailController().addBorrowDetail(borrow.getBorrowedBooks());
 
-            new Alert(Alert.AlertType.INFORMATION, "BOOK ISSUED SUCCESSFULLY", ButtonType.OK).show();
-
             if (isAddBorrowDetail) {
                 boolean updateAvailability = new BookServiceImpl().updateAvailability(borrow.getBorrowedBooks());
+
                 if (updateAvailability) {
                     return true;
                 }
             }
         }
-
-//        if (placeBorrowOrder) {
-//
-//        } else {
-//            new Alert(Alert.AlertType.INFORMATION, "UNABLE TO COMPLETE YOUR REQUEST. PLEASE TRY AGAIN", ButtonType.OK).show();
-//        }
-
         return placeBorrowOrder;
+
     }
 
     @FXML
     void btnConfirmBorrowingOnAction(ActionEvent event) {
-        placeBorrow();
+        boolean isBorrow = placeBorrow();
 
-//            boolean placeBorrowOrder = borrowService.placeBorrowOrder();
-//
-//            if(placeBorrowOrder) {
-//                new Alert(Alert.AlertType.INFORMATION, "ORDER ADDED").show();
-//                clear();
-//            } else {
-//                new Alert(Alert.AlertType.ERROR, "ORDER NOT ADDED").show();
-//            }
-//
-//
-//        });
+        if (isBorrow) {
+            new Alert(Alert.AlertType.INFORMATION, "BOOK ISSUED SUCCESSFULLY", ButtonType.OK).show();
+            clear();
+        } else {
+            new Alert(Alert.AlertType.INFORMATION, "UNABLE TO COMPLETE YOUR REQUEST. PLEASE TRY AGAIN", ButtonType.OK).show();
+        }
 
     }
 

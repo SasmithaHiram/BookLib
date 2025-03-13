@@ -13,7 +13,7 @@ import java.util.List;
 public class BorrowDetailDaoImpl implements BorrowDetailDao {
     @Override
     public boolean save(BorrowDetailEntity entity) {
-        String SQL = "INSERT INTO borrow_detail VALUES (?, ?, ?)";
+        String SQL = "INSERT INTO borrow_detail (borrow_id, book_id, borrow_date) VALUES (?, ?, ?)";
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
