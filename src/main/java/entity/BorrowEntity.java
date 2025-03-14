@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import util.BorrowStatus;
 
-import java.util.Date;
 import java.util.List;
 
 @Data

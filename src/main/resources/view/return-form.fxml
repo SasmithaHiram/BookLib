@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReturnController">
    <children>
@@ -24,10 +25,15 @@
         </columns>
       </TableView>
       <Button layoutX="465.0" layoutY="361.0" mnemonicParsing="false" onAction="#btnConfirmBorrowingOnAction" prefHeight="25.0" prefWidth="81.0" text="Place Order" />
-      <JFXComboBox fx:id="cmbMembersId" layoutX="79.0" layoutY="83.0" prefHeight="25.0" prefWidth="107.0" promptText="Member Id" />
-      <JFXComboBox fx:id="cmbBooksId" layoutX="247.0" layoutY="124.0" prefHeight="25.0" prefWidth="107.0" promptText="Book Id" />
-      <DatePicker fx:id="dewDate" layoutX="238.0" layoutY="166.0" promptText="Return Date" />
-      <JFXTextField fx:id="txtBorrowId" layoutX="233.0" layoutY="83.0" />
-      <JFXButton layoutX="412.0" layoutY="89.0" onAction="#btnSearchBorrowIdOnAction" text="Search" />
+      <JFXComboBox fx:id="cmbBooksId" layoutX="167.0" layoutY="125.0" prefHeight="25.0" prefWidth="107.0" promptText="Book Id" />
+      <DatePicker fx:id="returnDate" layoutX="238.0" layoutY="166.0" promptText="Return Date" />
+      <JFXTextField fx:id="txtBorrowId" layoutX="178.0" layoutY="83.0" promptText="Enter Borrow Id" />
+      <JFXButton layoutX="344.0" layoutY="85.0" onAction="#btnSearchBorrowIdOnAction" style="-fx-background-color: blue;" text="Search" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></JFXButton>
+      <JFXTextField fx:id="txtMemberId" disable="true" layoutX="11.0" layoutY="125.0" promptText="Member Id" />
+      <JFXTextField fx:id="txtBorrowDate" disable="true" layoutX="295.0" layoutY="125.0" text="Borrow Date" />
+      <JFXTextField fx:id="txtDewDate" disable="true" layoutX="451.0" layoutY="125.0" promptText="Dew Date" />
    </children>
 </AnchorPane>
