@@ -13,7 +13,7 @@ import java.util.List;
 
 public class MemberServiceImpl implements MemberService {
     @Inject
-    MemberDao dao = new MemberDaoImpl();
+    MemberDao dao;
 
     @Override
     public boolean addMember(Member member) {

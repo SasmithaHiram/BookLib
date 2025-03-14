@@ -8,7 +8,7 @@ import service.impl.BorrowDetailServiceImpl;
 import java.util.List;
 
 public class BorrowDetailController {
-//    @Inject
+    @Inject
     BorrowDetailService borrowDetailService = new BorrowDetailServiceImpl();
 
     public boolean addBorrowDetail(List<BorrowDetails> borrowDetails) {

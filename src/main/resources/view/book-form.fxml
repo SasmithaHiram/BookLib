@@ -54,5 +54,10 @@
       <JFXTextField fx:id="txtGenre" layoutX="68.0" layoutY="123.0" promptText="Genre" />
       <JFXTextField fx:id="txtAuthor" layoutX="233.0" layoutY="123.0" promptText="Author" />
       <JFXComboBox fx:id="cmbAvailability" layoutX="398.0" layoutY="122.0" prefHeight="25.0" prefWidth="135.0" promptText="Availability" />
+      <Button layoutX="54.0" layoutY="361.0" mnemonicParsing="false" onAction="#btnGetBookReportOnAction" prefHeight="25.0" prefWidth="118.0" style="-fx-background-color: #6c757d;" text="Get Book Report" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

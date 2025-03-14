@@ -40,14 +40,14 @@ public class BorrowController implements Initializable {
     public JFXTextField txtBookName;
     public JFXTextField txtStatus;
 
-    //@Inject
-    MemberService service = new MemberServiceImpl();
+    @Inject
+    MemberService service;
 
-    //@Inject
-    BookService bookService = new BookServiceImpl();
+    @Inject
+    BookService bookService;
 
-    //@Inject
-    BorrowService borrowService = new BorrowServiceImpl();
+    @Inject
+    BorrowService borrowService;
 
     public JFXTextField orderId;
 

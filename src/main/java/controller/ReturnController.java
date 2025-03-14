@@ -11,34 +11,34 @@ import javafx.scene.control.TableView;
 public class ReturnController {
 
     @FXML
-    private JFXComboBox<?> cmbBooksId;
+    private JFXComboBox cmbBooksId;
 
     @FXML
-    private JFXComboBox<?> cmbMembersId;
+    private JFXComboBox cmbMembersId;
 
     @FXML
-    private TableColumn<?, ?> colBookId;
+    private TableColumn colBookId;
 
     @FXML
-    private TableColumn<?, ?> colBorrowDate;
+    private TableColumn colBorrowDate;
 
     @FXML
-    private TableColumn<?, ?> colBorrowId;
+    private TableColumn colBorrowId;
 
     @FXML
-    private TableColumn<?, ?> colMemberId;
+    private TableColumn colMemberId;
 
     @FXML
-    private TableColumn<?, ?> colReturnDate;
+    private TableColumn colReturnDate;
 
     @FXML
     private DatePicker dewDate;
 
     @FXML
-    private JFXTextField orderId;
+    private TableView tbCart;
 
     @FXML
-    private TableView<?> tbCart;
+    private JFXTextField txtBorrowId;
 
     @FXML
     void bntAddToListOnAction(ActionEvent event) {
@@ -47,6 +47,11 @@ public class ReturnController {
 
     @FXML
     void btnConfirmBorrowingOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnSearchBorrowIdOnAction(ActionEvent event) {
 
     }
 

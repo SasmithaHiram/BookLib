@@ -16,8 +16,6 @@ public class BorrowDetailServiceImpl implements BorrowDetailService {
     public boolean addBorrowDetail(BorrowDetails borrowDetails) {
         BorrowDetailEntity map = new ModelMapper().map(borrowDetails, BorrowDetailEntity.class);
         return borrowDetailDao.save(map);
-
-
     }
 
 }

@@ -13,9 +13,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import repository.db.DBConnection;
 import service.custom.BookService;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class BookController implements Initializable {
@@ -155,4 +161,17 @@ public class BookController implements Initializable {
     public void btnReloadOnAction(ActionEvent actionEvent) {
         loadTable();
     }
+
+    public void btnGetBookReportOnAction(ActionEvent actionEvent) {
+        try {
+            JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/report/Book.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
+            JasperViewer.viewReport(jasperPrint);
+        } catch (JRException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
 }
