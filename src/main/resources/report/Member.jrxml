@@ -1,0 +1,90 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="Books" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2365f1ff-45c6-45be-a943-229fc0cf8f14">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+	<query language="SQL"><![CDATA[SELECT *FROM members]]></query>
+	<field name="member_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="member_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="member_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="members"/>
+	</field>
+	<field name="name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="members"/>
+	</field>
+	<field name="contact_info" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="contact_info"/>
+		<property name="com.jaspersoft.studio.field.label" value="contact_info"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="members"/>
+	</field>
+	<field name="membership_date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="membership_date"/>
+		<property name="com.jaspersoft.studio.field.label" value="membership_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="members"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="77" splitType="Stretch">
+		<element kind="staticText" uuid="0707e90c-65d1-414f-ac54-74deaf8c9c3c" x="210" y="0" width="135" height="40" fontSize="30.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[BookLib]]></text>
+		</element>
+		<element kind="staticText" uuid="4926ba17-f82e-445c-9dad-c64c50e770b1" x="177" y="40" width="200" height="20" fontSize="13.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[Rajagiriya | +94 123 456 789 ]]></text>
+		</element>
+		<element kind="textField" uuid="913d153d-13d0-4e37-83f4-82dd8e09297a" x="454" y="0" width="100" height="30" pattern="MMMMM dd, yyyy">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+		<element kind="textField" uuid="9e18fa8a-32d7-4dd0-97c6-574ec7a39823" x="454" y="30" width="100" height="30" pattern="HH:mm">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+	</title>
+	<pageHeader height="69" splitType="Stretch">
+		<element kind="staticText" uuid="76ca48bc-2bd5-4655-bd6e-eaa6ddba33e9" x="172" y="0" width="210" height="30" fontSize="20.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Member Report]]></text>
+		</element>
+		<element kind="staticText" uuid="af19c548-dd81-45e8-af83-8a39c11155b6" x="269" y="47" width="90" height="14" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Contact Info]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1acd1290-7be0-437c-9f26-7c23516a70c4"/>
+		</element>
+		<element kind="staticText" uuid="c1155735-3d0c-4ee6-acf4-c133e81bcf35" x="369" y="47" width="90" height="14" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Membership Date]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3c96391b-2763-49bb-b2cb-1bd4ac5090b3"/>
+		</element>
+		<element kind="staticText" uuid="2e9fad21-673a-45eb-96e6-f2bd5f632014" x="69" y="47" width="90" height="14" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Member Id]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="11861af2-3e25-49b7-9eda-86cd1c38b6dd"/>
+		</element>
+		<element kind="staticText" uuid="cda0e4c0-e927-4a43-9a73-e685ab74c783" x="169" y="47" width="90" height="14" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Name]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6589b47c-379f-469f-9af1-c5b9dd18b7ef"/>
+		</element>
+	</pageHeader>
+	<columnHeader splitType="Stretch"/>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<element kind="textField" uuid="3036583a-0709-4163-ab41-14e684cec37e" x="75" y="0" width="78" height="30" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{member_id}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="11861af2-3e25-49b7-9eda-86cd1c38b6dd"/>
+			</element>
+			<element kind="textField" uuid="0c8dd0b8-f9cb-4a30-92d6-e28403c764a9" x="183" y="0" width="62" height="30" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{name}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6589b47c-379f-469f-9af1-c5b9dd18b7ef"/>
+			</element>
+			<element kind="textField" uuid="bd106c3f-734a-4b4f-a4db-04fe90acf035" x="277" y="0" width="74" height="30" hTextAlign="Center">
+				<expression><![CDATA[$F{contact_info}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1acd1290-7be0-437c-9f26-7c23516a70c4"/>
+			</element>
+			<element kind="textField" uuid="7a044bfe-daa3-4a0a-ba1f-c1058dd79fb0" x="361" y="0" width="106" height="30" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{membership_date}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3c96391b-2763-49bb-b2cb-1bd4ac5090b3"/>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="151" splitType="Stretch"/>
+	<pageFooter height="56" splitType="Stretch">
+		<element kind="staticText" uuid="16a859a1-1814-40d0-bea4-30dce8a1d9e8" x="182" y="20" width="190" height="36" fontSize="26.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[Thank You!]]></text>
+		</element>
+	</pageFooter>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>

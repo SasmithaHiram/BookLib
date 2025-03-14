@@ -168,7 +168,7 @@ public class BookController implements Initializable {
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
-            JasperViewer.viewReport(jasperPrint);
+            JasperViewer.viewReport(jasperPrint, false);
         } catch (JRException | SQLException e) {
             throw new RuntimeException(e);
         }

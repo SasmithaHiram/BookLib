@@ -50,5 +50,10 @@
       <JFXTextField fx:id="txtName" layoutX="315.0" layoutY="83.0" promptText="Name" />
       <JFXTextField fx:id="txtContactInfo" layoutX="150.0" layoutY="123.0" promptText="Contact Number" />
       <DatePicker fx:id="membershipDate" layoutX="315.0" layoutY="125.0" prefHeight="25.0" prefWidth="135.0" promptText="Membership Date" />
+      <Button layoutX="54.0" layoutY="361.0" mnemonicParsing="false" onAction="#btnGetMemberReportOnAction" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #6c757d;" text="Get Member Report" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
