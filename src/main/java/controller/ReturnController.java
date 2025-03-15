@@ -16,6 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import service.custom.BorrowService;
 import service.custom.ReturnService;
+import service.impl.BookServiceImpl;
 import util.BorrowStatus;
 
 import java.util.ArrayList;
@@ -94,6 +95,7 @@ public class ReturnController {
 
 
             boolean updateBorrowDetail = new BorrowDetailController().updateBorrowDetail(borrow.getBorrowedBooks());
+
 
             return updateBorrowDetail;
 

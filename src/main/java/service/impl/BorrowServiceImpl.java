@@ -38,7 +38,11 @@ public class BorrowServiceImpl implements BorrowService {
     @Override
     public boolean UpdateBorrowOrder(Borrow borrow) {
         BorrowEntity map = new ModelMapper().map(borrow, BorrowEntity.class);
-        borrowDao.update(map);
+        boolean isUpdated = borrowDao.update(map);
+
+        if (isUpdated) {
+            new BookServiceImpl().updateReturnAvailability(borrow.getBorrowedBooks());
+        }
         return false;
     }
 

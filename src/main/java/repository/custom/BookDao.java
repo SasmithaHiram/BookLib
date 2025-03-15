@@ -7,5 +7,6 @@ import repository.CRUDRepository;
 
 public interface BookDao extends CRUDRepository <BookEntity, String> {
     boolean updateAvailability(BorrowDetailEntity borrowDetailEntity);
+    boolean updateReturnBook(BorrowDetailEntity borrowDetailEntity);
 
 }

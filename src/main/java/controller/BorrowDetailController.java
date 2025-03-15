@@ -39,6 +39,6 @@ public class BorrowDetailController {
 
     public boolean updateBorrowDetail(BorrowDetails borrowDetail) {
         return borrowDetailService.updateBorrowDetail(borrowDetail);
-
     }
+
 }

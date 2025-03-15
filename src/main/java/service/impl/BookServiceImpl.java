@@ -79,4 +79,23 @@ public class BookServiceImpl implements BookService {
         return dao.updateAvailability(borrowDetail);
     }
 
+    public boolean updateReturnAvailability(List<BorrowDetails> borrowDetails) {
+        List<BorrowDetailEntity> borrowDetailEntities = new ArrayList<>();
+
+        for (BorrowDetails borrowDetail : borrowDetails) {
+            BorrowDetailEntity entity = new ModelMapper().map(borrowDetail, BorrowDetailEntity.class);
+            borrowDetailEntities.add(entity);
+            boolean updateAvailability = updateReturnAvailability(entity);
+
+            if (!updateAvailability) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean updateReturnAvailability(BorrowDetailEntity borrowDetail) {
+        return dao.updateReturnBook(borrowDetail);
+    }
+
 }
