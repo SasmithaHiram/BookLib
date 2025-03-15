@@ -1,6 +1,5 @@
 package service.impl;
 
-import com.google.inject.Inject;
 import dto.Borrow;
 import entity.BorrowEntity;
 import org.modelmapper.ModelMapper;
@@ -34,6 +33,13 @@ public class BorrowServiceImpl implements BorrowService {
             borrows.add(map);
         });
         return borrows;
+    }
+
+    @Override
+    public boolean UpdateBorrowOrder(Borrow borrow) {
+        BorrowEntity map = new ModelMapper().map(borrow, BorrowEntity.class);
+        borrowDao.update(map);
+        return false;
     }
 
 }

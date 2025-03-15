@@ -25,4 +25,20 @@ public class BorrowDetailController {
     public boolean addBorrowDetail(BorrowDetails borrowDetail) {
         return borrowDetailService.addBorrowDetail(borrowDetail);
     }
+
+    public boolean updateBorrowDetail(List<BorrowDetails> borrowDetails) {
+        for (BorrowDetails borrowDetail : borrowDetails) {
+            boolean isUpdateBorrowDetail = updateBorrowDetail(borrowDetail);
+
+            if (!isUpdateBorrowDetail) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean updateBorrowDetail(BorrowDetails borrowDetail) {
+        return borrowDetailService.updateBorrowDetail(borrowDetail);
+
+    }
 }

@@ -70,7 +70,7 @@ public class ReturnController {
     }
 
     @FXML
-    void btnConfirmBorrowingOnAction(ActionEvent event) {
+    boolean btnConfirmBorrowingOnAction(ActionEvent event) {
         String borrowIdText = txtBorrowId.getText();
         String txtMemberIdText = txtMemberId.getText();
         String txtBookIdText = cmbBooksId.getValue().toString();
@@ -90,11 +90,14 @@ public class ReturnController {
         );
 
         Borrow borrow = new Borrow(borrowIdText, txtMemberIdText, txtBorrowDateText, dewDateText, BorrowStatus.RETURNED, borrowDetails);
-////        boolean b = borrowService.UpdateBorrowOrder(borrow);
-//
-//        if (b) {
-//            new Alert(Alert.AlertType.INFORMATION, "Updated").show();
-//        }
+        borrowService.UpdateBorrowOrder(borrow);
+
+
+            boolean updateBorrowDetail = new BorrowDetailController().updateBorrowDetail(borrow.getBorrowedBooks());
+
+            return updateBorrowDetail;
+
+
     }
 
     @FXML

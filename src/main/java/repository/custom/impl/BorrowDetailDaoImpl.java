@@ -34,7 +34,18 @@ public class BorrowDetailDaoImpl implements BorrowDetailDao {
 
     @Override
     public boolean update(BorrowDetailEntity entity) {
-        return false;
+        String SQL = "UPDATE borrow_detail SET book_id = ?, borrow_date = ?, return_date = ? WHERE borrow_id = ?";
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setObject(1, entity.getBookId());
+            preparedStatement.setObject(2, entity.getBorrowDate());
+            preparedStatement.setObject(3, entity.getReturnDate());
+            preparedStatement.setObject(4, entity.getBorrowId());
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

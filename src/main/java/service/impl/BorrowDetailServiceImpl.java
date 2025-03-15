@@ -18,4 +18,10 @@ public class BorrowDetailServiceImpl implements BorrowDetailService {
         return borrowDetailDao.save(map);
     }
 
+    @Override
+    public boolean updateBorrowDetail(BorrowDetails borrowDetails) {
+        BorrowDetailEntity map = new ModelMapper().map(borrowDetails, BorrowDetailEntity.class);
+        return borrowDetailDao.update(map);
+    }
+
 }
