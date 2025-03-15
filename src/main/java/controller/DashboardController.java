@@ -44,20 +44,18 @@ public class DashboardController {
         loader.setControllerFactory(injector::getInstance);
         this.loadFormContent.getChildren().clear();
         this.loadFormContent.getChildren().add(loader.load());
-
     }
 
-    @FXML
-    void btnRegisterNewUserAction(ActionEvent event) throws IOException {
+    public void btnReturnBooksOnAction(ActionEvent actionEvent) throws IOException {
         Injector injector = Guice.createInjector(new AppModule());
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/return-form.fxml"));
         loader.setControllerFactory(injector::getInstance);
         this.loadFormContent.getChildren().clear();
         this.loadFormContent.getChildren().add(loader.load());
-
     }
 
-    public void btnReturnBooksOnAction(ActionEvent actionEvent) {
+    @FXML
+    void btnRegisterNewUserAction(ActionEvent event) throws IOException {
 
     }
 }

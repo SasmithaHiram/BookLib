@@ -52,7 +52,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="14.0" layoutY="296.0" onAction="#btnReturnBooksOnAction" style="-fx-background-color: White;" text="Return Books">
+      <JFXButton layoutX="2.0" layoutY="306.0" onAction="#btnReturnBooksOnAction" style="-fx-background-color: White;" text="Return Books">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
