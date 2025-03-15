@@ -5,8 +5,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -14,26 +13,24 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReturnController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#135b9e" height="66.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
-      <Button layoutX="506.0" layoutY="166.0" mnemonicParsing="false" onAction="#bntAddToListOnAction" prefHeight="25.0" prefWidth="81.0" text="Add To Cart" />
-      <TableView fx:id="tbCart" layoutX="54.0" layoutY="206.0" prefHeight="145.0" prefWidth="493.0">
-        <columns>
-          <TableColumn fx:id="colBorrowId" prefWidth="90.0" text="Borrow Id" />
-            <TableColumn fx:id="colMemberId" prefWidth="90.0" text="Member Id" />
-            <TableColumn fx:id="colBookId" prefWidth="90.0" text="Book Id" />
-            <TableColumn fx:id="colBorrowDate" prefWidth="111.0" text="Borrow Date" />
-            <TableColumn fx:id="colReturnDate" prefWidth="111.0" text="Return Date" />
-        </columns>
-      </TableView>
-      <Button layoutX="465.0" layoutY="361.0" mnemonicParsing="false" onAction="#btnConfirmBorrowingOnAction" prefHeight="25.0" prefWidth="81.0" text="Place Order" />
+      <Button layoutX="479.0" layoutY="361.0" mnemonicParsing="false" onAction="#btnConfirmBorrowingOnAction" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: #28a745;" text="Return" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
       <JFXComboBox fx:id="cmbBooksId" layoutX="167.0" layoutY="125.0" prefHeight="25.0" prefWidth="107.0" promptText="Book Id" />
-      <DatePicker fx:id="returnDate" layoutX="238.0" layoutY="166.0" promptText="Return Date" />
+      <DatePicker fx:id="returnDate" layoutX="11.0" layoutY="168.0" prefHeight="25.0" prefWidth="135.0" promptText="Return Date" />
       <JFXTextField fx:id="txtBorrowId" layoutX="178.0" layoutY="83.0" promptText="Enter Borrow Id" />
-      <JFXButton layoutX="344.0" layoutY="85.0" onAction="#btnSearchBorrowIdOnAction" style="-fx-background-color: blue;" text="Search" textFill="WHITE">
+      <JFXButton layoutX="344.0" layoutY="85.0" onAction="#btnSearchBorrowIdOnAction" style="-fx-background-color: #007bff;" text="Search" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></JFXButton>
-      <JFXTextField fx:id="txtMemberId" disable="true" layoutX="11.0" layoutY="125.0" promptText="Member Id" />
+      <JFXTextField fx:id="txtMemberId" layoutX="11.0" layoutY="125.0" promptText="Member Id" />
       <JFXTextField fx:id="txtBorrowDate" disable="true" layoutX="295.0" layoutY="125.0" text="Borrow Date" />
       <JFXTextField fx:id="txtDewDate" disable="true" layoutX="451.0" layoutY="125.0" promptText="Dew Date" />
+      <Label layoutX="205.0" layoutY="9.0" text="Return Books" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
