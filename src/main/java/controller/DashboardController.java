@@ -54,8 +54,14 @@ public class DashboardController {
         this.loadFormContent.getChildren().add(loader.load());
     }
 
-    @FXML
-    void btnRegisterNewUserAction(ActionEvent event) throws IOException {
+    public void btnFineCalculatorOnAction(ActionEvent actionEvent) throws IOException {
+        Injector injector = Guice.createInjector(new AppModule());
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/fine-form.fxml"));
+        loader.setControllerFactory(injector::getInstance);
+        this.loadFormContent.getChildren().clear();
+        this.loadFormContent.getChildren().add(loader.load());
+    }
 
+    public void btnRegisterNewUserAction(ActionEvent actionEvent) {
     }
 }
