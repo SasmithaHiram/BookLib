@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import service.custom.FineService;
 import service.custom.ReturnService;
 
 import java.time.LocalDate;
@@ -21,6 +22,9 @@ import java.time.temporal.ChronoUnit;
 public class FineController {
     @Inject
     ReturnService returnService;
+
+    @Inject
+    FineService fineService;
 
     @FXML
     private JFXComboBox cmbBooksId;
@@ -74,11 +78,7 @@ public class FineController {
                 int lateDayFeeInt = (int) lateDayFee;
 
                 lateFee.setText(String.valueOf(lateDayFeeInt));
-                //Double textDouble = Double.valueOf(txtPayAmount.getText());
 
-                Fine fine = new Fine(txtBorrowId.getText(), txtBorrowDate.getText(), dewDate.toString(), returnDate.toString(), lateDayFeeInt, 100.0 );
-
-                System.out.println(fine);
             } else {
                 new Alert(Alert.AlertType.INFORMATION, "Not Fee").show();
             }
@@ -91,11 +91,21 @@ public class FineController {
     @FXML
     void btnConfirmPayAmountOnAction(ActionEvent event) {
         String borrowIdText = txtBorrowId.getText();
-        String txtMemberIdText = txtMemberId.getText();
-        String txtBookIdText = cmbBooksId.getValue().toString();
         String txtBorrowDateText = txtBorrowDate.getText();
+        String dewDateText = txtDewDate.getText();
+        String txtReturnDateText = txtReturnDate.getText();
+        Integer lateFeeText = Integer.valueOf(lateFee.getText());
+        Double txtPayAmountText = Double.valueOf(txtPayAmount.getText());
+
+        Fine fine = new Fine(borrowIdText, txtBorrowDateText, dewDateText, txtReturnDateText, lateFeeText, txtPayAmountText);
+        boolean isAddFine = fineService.addFine(fine);
+
+        if (isAddFine) {
+            new Alert(Alert.AlertType.INFORMATION, "PAYMENT SUCCESSFUL").show();
+        } else {
+            new Alert(Alert.AlertType.ERROR, "PAYMENT FAILED. PLEASE TRY AGAIN").show();
+        }
 
     }
-
 
 }

@@ -12,7 +12,7 @@ import java.util.List;
 public class FineDaoImpl implements FineDao {
     @Override
     public boolean save(FineEntity entity) {
-        String SQL = "INSERT INTO fine VALUES (?, ?, ?, ?, ?, ?)";
+        String SQL = "INSERT INTO fines (borrow_id, borrow_date, due_date, return_date, fine_amount, pay_amount) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
