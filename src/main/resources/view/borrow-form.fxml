@@ -25,9 +25,9 @@
       <Button layoutX="465.0" layoutY="361.0" mnemonicParsing="false" onAction="#btnConfirmBorrowingOnAction" prefHeight="25.0" prefWidth="81.0" text="Place Order" />
       <JFXComboBox fx:id="cmbMembersId" layoutX="164.0" layoutY="84.0" prefHeight="25.0" prefWidth="107.0" promptText="Member Id" />
       <JFXComboBox fx:id="cmbBooksId" layoutX="82.0" layoutY="125.0" prefHeight="25.0" prefWidth="107.0" promptText="Book Id" />
-      <JFXTextField fx:id="orderId" layoutX="452.0" layoutY="19.0" promptText="Order Id" style="-fx-background-color: white;" unFocusColor="WHITE" />
+      <JFXTextField fx:id="orderId" layoutX="452.0" layoutY="19.0" promptText="Borrow Id" style="-fx-background-color: white;" unFocusColor="WHITE" />
       <DatePicker fx:id="borrowDate" layoutX="55.0" layoutY="166.0" promptText="Borrow Date" />
-      <DatePicker fx:id="dewDate" layoutX="238.0" layoutY="166.0" promptText="Return Date" />
+      <DatePicker fx:id="dewDate" layoutX="238.0" layoutY="166.0" promptText="Due Date" />
       <JFXTextField fx:id="txtMemberName" disable="true" layoutX="301.0" layoutY="84.0" promptText="Member Name" />
       <JFXTextField fx:id="txtBookName" layoutX="219.0" layoutY="125.0" promptText="Book Title" />
       <JFXTextField fx:id="txtStatus" disable="true" layoutX="384.0" layoutY="125.0" promptText="Status" />

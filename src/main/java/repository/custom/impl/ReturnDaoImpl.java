@@ -24,8 +24,7 @@ public class ReturnDaoImpl implements ReturnDao {
                 "b.dew_date, " +
                 "b.status AS borrow_status, " +
                 "bd.book_id, " +
-                "bd.return_date, " +
-                "bd.status AS borrow_detail_status " +
+                "bd.return_date " +
                 "FROM borrow b " +
                 "LEFT JOIN borrow_detail bd ON b.borrow_id = bd.borrow_id " +
                 "WHERE b.borrow_id = ?";

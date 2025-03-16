@@ -2,6 +2,8 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -9,11 +11,6 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#135b9e" height="412.0" layoutX="-1.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="213.0" />
-      <JFXButton layoutY="141.0" onAction="#btnBookManagementOnAction" style="-fx-background-color: White;" text="Book Management">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </JFXButton>
       <AnchorPane fx:id="loadFormContent" layoutX="211.0" prefHeight="400.0" prefWidth="600.0">
          <children>
             <Label layoutX="215.0" layoutY="352.0" text="Developed by Sasmitha Hiram">
@@ -31,33 +28,38 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="225.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Logo.png" />
+               </image>
+            </ImageView>
          </children></AnchorPane>
-      <JFXButton layoutX="20.0" layoutY="353.0" onAction="#btnRegisterNewUserAction" prefHeight="44.0" prefWidth="171.0" style="-fx-background-color: White;" text="Register">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </JFXButton>
-      <Label layoutX="56.0" layoutY="14.0" text="BookLib" textFill="WHITE">
+      <Label layoutX="59.0" layoutY="14.0" text="BookLib" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <JFXButton layoutX="8.0" layoutY="183.0" onAction="#btnMemberManagementOnAction" style="-fx-background-color: White;" text="Member Management">
+      <JFXButton layoutX="14.0" layoutY="142.0" onAction="#btnBookManagementOnAction" style="-fx-background-color: White;" text="Book Management">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="14.0" layoutY="229.0" onAction="#btnborrowBooksOnAction" style="-fx-background-color: White;" text="Borrow Books">
+      <JFXButton layoutX="14.0" layoutY="197.0" onAction="#btnMemberManagementOnAction" style="-fx-background-color: White;" text="Member Management">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="8.0" layoutY="276.0" onAction="#btnReturnBooksOnAction" style="-fx-background-color: White;" text="Return Books">
+      <JFXButton layoutX="14.0" layoutY="252.0" onAction="#btnborrowBooksOnAction" style="-fx-background-color: White;" text="Borrow Books">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="21.0" layoutY="318.0" onAction="#btnFineCalculatorOnAction" style="-fx-background-color: White;" text="Fine Calculator">
+      <JFXButton layoutX="14.0" layoutY="307.0" onAction="#btnReturnBooksOnAction" style="-fx-background-color: White;" text="Return Books">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="14.0" layoutY="362.0" onAction="#btnFineCalculatorOnAction" style="-fx-background-color: White;" text="Fine Calculator">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
