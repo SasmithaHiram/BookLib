@@ -16,5 +16,6 @@ public class BorrowDetails {
     private String bookId;
     private String borrowDate;
     private String returnDate;
+    private BorrowStatus status;
 
 }

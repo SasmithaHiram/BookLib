@@ -85,7 +85,8 @@ public class ReturnController {
                         borrowIdText,
                         txtBookIdText,
                         txtBorrowDateText,
-                        returnD
+                        returnD,
+                        BorrowStatus.RETURNED
                 )
         );
 
@@ -115,8 +116,7 @@ public class ReturnController {
 
             ObservableList<String> observableList = FXCollections.observableArrayList();
             observableList.add(searchBorrow.getBookId());
-            cmbBooksId.setItems(observableList);
-            cmbBooksId.getSelectionModel().selectFirst();
+            cmbBooksId.getItems().setAll(observableList);
         } else {
             new Alert(Alert.AlertType.INFORMATION, "NO BORROW ID FOUND. PLEASE CHECK AND TRY AGAIN").show();
         }

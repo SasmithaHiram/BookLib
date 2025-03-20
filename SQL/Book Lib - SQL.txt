@@ -1,0 +1,47 @@
+CREATE TABLE books (
+	book_id VARCHAR(100) PRIMARY KEY,
+	isbn VARCHAR(20) UNIQUE NOT NULL,
+	title VARCHAR(225) NOT NULL,
+	author VARCHAR(225) NOT NULL,	
+	genre VARCHAR(50) NOT NULL,
+	availability VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE members (
+	member_id VARCHAR(100) PRIMARY KEY,
+	name VARCHAR(225) NOT NULL,
+	contact_info VARCHAR(10) UNIQUE,
+	membership_dtae DATE
+);
+
+CREATE TABLE borrow (
+	borrow_id VARCHAR (225) PRIMARY KEY,
+	member_id VARCHAR (225) NOT NULL,
+	borrow_date DATE NOT NULL,
+	dew_date DATE NOT NULL,
+	status ENUM ('borrowed', 'returned'),
+	FOREIGN KEY (member_id) REFERENCES members(member_id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE borrow_detail(
+	borrow_id VARCHAR (100) NOT NULL,
+	book_id VARCHAR (100) NOT NULL,
+	borrow_date DATE NOT NULL, 
+	return_date DATE,
+	status ENUM ('borrowed', 'returned'),
+	CONSTRAINT PRIMARY KEY (borrow_id, book_id),
+	CONSTRAINT FOREIGN KEY (borrow_id) REFERENCES borrow(borrow_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT FOREIGN KEY (book_id) REFERENCES books(book_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE fines (
+	fine_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+	borrow_id VARCHAR(100),
+	borrow_date DATE NOT NULL,
+	due_date DATE NOT NULL,
+	return_date DATE NOT NULL,
+	fine_amount INT NOT NULL,
+	pay_amount DOUBLE NOT NULL,
+	FOREIGN KEY (borrow_id) REFERENCES borrow(borrow_id) ON DELETE CASCADE
+);

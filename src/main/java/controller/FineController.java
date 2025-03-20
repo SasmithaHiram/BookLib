@@ -80,7 +80,7 @@ public class FineController {
                 lateFee.setText(String.valueOf(lateDayFeeInt));
 
             } else {
-                new Alert(Alert.AlertType.INFORMATION, "Not Fee").show();
+                new Alert(Alert.AlertType.INFORMATION, "TRY").show();
             }
         } else {
             new Alert(Alert.AlertType.INFORMATION, "NO BORROW ID FOUND. PLEASE CHECK AND TRY AGAIN").show();

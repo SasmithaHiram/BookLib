@@ -92,7 +92,7 @@ public class BorrowController implements Initializable {
         String dewDay = dewDate.getValue().toString();
 
         if (txtStatus.getText().toUpperCase().equals(BookStatus.AVAILABLE.toString())) {
-            if (cartTMS.size() < 3) {
+            if (cartTMS.size() < 1) {
                 cartTMS.add(new CartTM(bookId, borrowDay, dewDay));
                 tbCart.setItems(cartTMS);
                 addToCart();
@@ -120,7 +120,8 @@ public class BorrowController implements Initializable {
                             orderIdText,
                             cartTM.getBookId(),
                             cartTM.getBorrowDate(),
-                            null
+                            null,
+                            BorrowStatus.BORROWED
                     )
             );
         });
@@ -198,6 +199,7 @@ public class BorrowController implements Initializable {
         orderId.clear();
         cmbMembersId.setValue(null);
         cmbBooksId.setValue(null);
+        txtBookName.clear();
         borrowDate.setValue(null);
         dewDate.setValue(null);
     }
