@@ -92,7 +92,7 @@ public class BorrowController implements Initializable {
         String dewDay = dewDate.getValue().toString();
 
         if (txtStatus.getText().toUpperCase().equals(BookStatus.AVAILABLE.toString())) {
-            if (cartTMS.size() < 1) {
+            if (cartTMS.size() < 3) {
                 cartTMS.add(new CartTM(bookId, borrowDay, dewDay));
                 tbCart.setItems(cartTMS);
                 addToCart();
@@ -102,7 +102,6 @@ public class BorrowController implements Initializable {
         } else {
             new Alert(Alert.AlertType.WARNING, "THIS BOOK IS CURRENTLY NOT AVAILABLE").show();
         }
-
 
     }
 
