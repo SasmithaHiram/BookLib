@@ -90,6 +90,8 @@ public class MemberController {
             txtId.setText(member.getId());
             txtName.setText(member.getName());
             txtContactInfo.setText(member.getContactInfo());
+        } else {
+            new Alert(Alert.AlertType.WARNING, "MEMBER NOT FOUND").show();
         }
     }
 
